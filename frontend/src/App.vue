@@ -1,10 +1,7 @@
 <script setup>
-import { ref,onMounted,watch } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useRoute } from 'vue-router';
-import { useRouter } from 'vue-router';
-import Navbar from './components/Navbar.vue';
-import Footer from "./components/Footer.vue";
+import { useRoute, useRouter } from 'vue-router';
 import { useThemeStore } from "./stores/themeStore.js";
 
 const isLoading = ref(false);
@@ -30,20 +27,10 @@ onMounted(() => {
 
 const updateTitle = () => {
   const titleKey = route.meta.titleKey;
-  if (titleKey) {
-    document.title = `${t(titleKey)} - Informatics 25`;
-  } else {
-    document.title = 'Informatics 25';
-  }
+  document.title = titleKey ? `${t(titleKey)} - Informatics 25` : 'Informatics 25';
 };
 
-watch(locale, () => {
-  updateTitle();
-});
-
-watch(() => route.path, () => {
-  updateTitle();
-});
+watch([locale, () => route.path], updateTitle);
 </script>
 
 <template>
@@ -56,19 +43,15 @@ watch(() => route.path, () => {
         :leave="{ opacity: 0, transition: { duration: 800 } }"
     >
       <div v-if="isLoading" class="fixed inset-0 z-[9999] bg-white dark:bg-primary-950 flex flex-col items-center justify-center">
-
         <div class="relative flex items-center justify-center">
           <div class="w-24 h-24 border-4 border-primary-100 dark:border-primary-800 rounded-3xl animate-[spin_3s_linear_infinite]"></div>
-
           <div class="absolute w-24 h-24 border-t-4 border-secondary-600 dark:border-dark-600 rounded-3xl animate-spin"></div>
-
           <div class="absolute flex items-center justify-center">
             <span class="text-xl font-black text-primary-900 dark:text-white animate-pulse tracking-tighter">
               IF<span class="text-secondary-600 dark:text-dark-600">25</span>
             </span>
           </div>
         </div>
-
         <div class="mt-8 flex flex-col items-center gap-2">
           <p class="text-[10px] font-black text-primary-900 dark:text-white uppercase tracking-[0.4em] animate-pulse">
             Initializing <span class="text-secondary-600 dark:text-dark-600 italic">System</span>
@@ -77,12 +60,9 @@ watch(() => route.path, () => {
             <div class="h-full bg-secondary-600 dark:bg-dark-600 animate-[loading-bar_1.5s_infinite]"></div>
           </div>
         </div>
-
         <div class="absolute w-64 h-64 bg-secondary-600/10 dark:bg-dark-600/10 rounded-full blur-[100px] animate-pulse"></div>
       </div>
     </Transition>
-
-    <Navbar />
 
     <router-view v-slot="{ Component }">
       <transition
@@ -93,8 +73,6 @@ watch(() => route.path, () => {
       >
         <component :is="Component" />
       </transition>
-
-      <Footer />
     </router-view>
 
   </div>

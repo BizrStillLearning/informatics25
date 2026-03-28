@@ -5,10 +5,15 @@ import { useI18n } from 'vue-i18n'
 import { useThemeStore } from '../stores/themeStore'
 import * as THREE from 'three'
 import { Home, User, Lock, ArrowRight, ShieldCheck } from 'lucide-vue-next'
+import { useAuthStore } from "../stores/authStore.js";
+import { useRoute } from 'vue-router'
+import api from '../api/axios.js'
 
+const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
 const themeStore = useThemeStore()
+const authStore = useAuthStore()
 
 const form = ref({ identifier: '', password: '' });
 const error = ref('');
@@ -138,6 +143,10 @@ const handleResize = () => {
 onMounted(() => {
   initThree();
   window.addEventListener('resize', handleResize);
+
+  if (route.query.session === 'expired') {
+    error.value = "Sesi Anda telah berakhir (10 menit). Silakan login kembali.";
+  }
 });
 
 onBeforeUnmount(() => {
@@ -150,16 +159,27 @@ const handleLogin = async () => {
     error.value = t('login.error_empty');
     return;
   }
+
   isLoading.value = true;
   error.value = '';
-  setTimeout(() => {
-    isLoading.value = false;
-    if (form.value.identifier === 'admin' && form.value.password === 'admin') {
-      router.push('/dashboard/admin');
+
+  try {
+    const result = await authStore.login(form.value.identifier, form.value.password);
+
+    if (result.success) {
+      if (result.role === 'admin') {
+        router.push('/dashboard/admin');
+      } else {
+        router.push('/dashboard/student');
+      }
     } else {
-      error.value = t('login.error_wrong');
+      error.value = result.message;
     }
-  }, 1500);
+  } catch (err) {
+    error.value = "Terjadi kesalahan sistem.";
+  } finally {
+    isLoading.value = false;
+  }
 };
 
 const goToLanding = () => router.push('/')

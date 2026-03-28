@@ -11,14 +11,10 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
     "@vueuse/motion": "^3.0.3",
-    "axios": "^1.13.6",
     "lucide-vue-next": "^0.577.0",
-    "pinia": "^3.0.4",
     "swiper": "^12.1.2",
     "tailwindcss": "^4.2.1",
-    "three": "^0.183.2",
     "vue": "^3.5.25",
-    "vue-i18n": "^9.14.5",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
