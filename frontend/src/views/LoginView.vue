@@ -8,6 +8,7 @@ import { Home, User, Lock, ArrowRight, ShieldCheck } from 'lucide-vue-next'
 import { useAuthStore } from "../stores/authStore.js";
 import { useRoute } from 'vue-router'
 import api from '../api/axios.js'
+import MainLayout from "../components/layouts/landing/MainLayout.vue";
 
 const route = useRoute()
 const router = useRouter()
@@ -186,74 +187,78 @@ const goToLanding = () => router.push('/')
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center relative overflow-hidden p-4 bg-white dark:bg-primary-950 transition-colors duration-500 selection:bg-secondary-600 selection:text-white">
 
-    <canvas ref="canvasRef" class="absolute inset-0 z-0 pointer-events-none"></canvas>
+  <MainLayout>
+    <div class="min-h-screen flex items-center justify-center relative overflow-hidden p-4 bg-white dark:bg-primary-950 transition-colors duration-500 selection:bg-secondary-600 selection:text-white">
 
-    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] md:w-[80%] md:h-[80%] rounded-full bg-secondary-600/10 dark:bg-dark-600/10 blur-[150px]"></div>
-    </div>
+      <canvas ref="canvasRef" class="absolute inset-0 z-0 pointer-events-none"></canvas>
 
-    <button
-        @click="goToLanding"
-        class="absolute top-4 left-4 md:top-8 md:left-8 z-20 flex items-center gap-2 md:gap-3 px-4 py-2 md:px-6 md:py-3 bg-white/50 dark:bg-primary-900/40 backdrop-blur-xl text-primary-900 dark:text-primary-100 rounded-xl md:rounded-2xl shadow-sm border border-white/50 dark:border-primary-800 transition-all active:scale-95 text-[10px] font-black uppercase tracking-widest"
-    >
-      <Home class="w-3.5 h-3.5 md:w-4 md:h-4 text-secondary-600 dark:text-dark-600" />
-      <span>{{ t('login.back') }}</span>
-    </button>
-
-    <div
-        class="w-full max-w-[420px] p-6 sm:p-10 bg-white/60 dark:bg-primary-900/20 backdrop-blur-3xl rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl z-10 border border-white dark:border-primary-800"
-        v-motion
-        :initial="{ opacity: 0, y: 30, scale: 0.95 }"
-        :enter="{ opacity: 1, y: 0, scale: 1, transition: { duration: 800 } }"
-    >
-      <div class="text-center mb-8 md:mb-12">
-        <div class="w-14 h-14 md:w-18 md:h-18 bg-secondary-600 dark:bg-dark-600 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-8 shadow-2xl shadow-secondary-600/20">
-          <ShieldCheck class="w-8 h-8 md:w-10 md:h-10 text-white" />
-        </div>
-        <h1 class="text-3xl md:text-4xl font-black text-primary-900 dark:text-white tracking-tighter uppercase leading-none">
-          {{ t('login.title_part1') }} <span class="text-secondary-600 dark:text-dark-600 italic">{{ t('login.title_highlight') }}</span>
-        </h1>
-        <p class="text-primary-400 dark:text-primary-500 mt-3 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em]">{{ t('login.badge') }}</p>
+      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] md:w-[80%] md:h-[80%] rounded-full bg-secondary-600/10 dark:bg-dark-600/10 blur-[150px]"></div>
       </div>
 
-      <form @submit.prevent="handleLogin" class="space-y-4 md:space-y-6">
-        <div class="space-y-2">
-          <label class="text-[9px] font-black text-primary-400 uppercase tracking-[0.3em] ml-2">{{ t('login.label_user') }}</label>
-          <div class="relative group">
-            <User class="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-primary-300 group-focus-within:text-secondary-600 transition-colors" />
-            <input v-model="form.identifier" type="text" class="w-full pl-12 md:pl-14 pr-6 py-4 md:py-5 bg-white/50 dark:bg-primary-950/40 border border-primary-100 dark:border-primary-800 rounded-xl md:rounded-2xl focus:outline-none focus:border-secondary-600 dark:text-white transition-all font-bold text-sm" placeholder="admin" />
+      <button
+          @click="goToLanding"
+          class="absolute top-4 left-4 md:top-8 md:left-8 z-20 flex items-center gap-2 md:gap-3 px-4 py-2 md:px-6 md:py-3 bg-white/50 dark:bg-primary-900/40 backdrop-blur-xl text-primary-900 dark:text-primary-100 rounded-xl md:rounded-2xl shadow-sm border border-white/50 dark:border-primary-800 transition-all active:scale-95 text-[10px] font-black uppercase tracking-widest"
+      >
+        <Home class="w-3.5 h-3.5 md:w-4 md:h-4 text-secondary-600 dark:text-dark-600" />
+        <span>{{ t('login.back') }}</span>
+      </button>
+
+      <div
+          class="w-full max-w-[420px] p-6 sm:p-10 bg-white/60 dark:bg-primary-900/20 backdrop-blur-3xl rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl z-10 border border-white dark:border-primary-800"
+          v-motion
+          :initial="{ opacity: 0, y: 30, scale: 0.95 }"
+          :enter="{ opacity: 1, y: 0, scale: 1, transition: { duration: 800 } }"
+      >
+        <div class="text-center mb-8 md:mb-12">
+          <div class="w-14 h-14 md:w-18 md:h-18 bg-secondary-600 dark:bg-dark-600 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-8 shadow-2xl shadow-secondary-600/20">
+            <ShieldCheck class="w-8 h-8 md:w-10 md:h-10 text-white" />
           </div>
+          <h1 class="text-3xl md:text-4xl font-black text-primary-900 dark:text-white tracking-tighter uppercase leading-none">
+            {{ t('login.title_part1') }} <span class="text-secondary-600 dark:text-dark-600 italic">{{ t('login.title_highlight') }}</span>
+          </h1>
+          <p class="text-primary-400 dark:text-primary-500 mt-3 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em]">{{ t('login.badge') }}</p>
         </div>
 
-        <div class="space-y-2">
-          <label class="text-[9px] font-black text-primary-400 uppercase tracking-[0.3em] ml-2">{{ t('login.label_pass') }}</label>
-          <div class="relative group">
-            <Lock class="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-primary-300 group-focus-within:text-secondary-600 transition-colors" />
-            <input v-model="form.password" type="password" class="w-full pl-12 md:pl-14 pr-6 py-4 md:py-5 bg-white/50 dark:bg-primary-950/40 border border-primary-100 dark:border-primary-800 rounded-xl md:rounded-2xl focus:outline-none focus:border-secondary-600 dark:text-white transition-all font-bold text-sm" placeholder="••••••••" />
+        <form @submit.prevent="handleLogin" class="space-y-4 md:space-y-6">
+          <div class="space-y-2">
+            <label class="text-[9px] font-black text-primary-400 uppercase tracking-[0.3em] ml-2">{{ t('login.label_user') }}</label>
+            <div class="relative group">
+              <User class="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-primary-300 group-focus-within:text-secondary-600 dark:group-focus-within:text-dark-600 transition-colors" />
+              <input v-model="form.identifier" type="text" class="w-full pl-12 md:pl-14 pr-6 py-4 md:py-5 bg-white/50 dark:bg-primary-950/40 border border-primary-100 dark:border-primary-800 rounded-xl md:rounded-2xl focus:outline-none focus:border-secondary-600 dark:focus:border-dark-600 dark:text-white transition-all font-bold text-sm" placeholder="admin" />
+            </div>
           </div>
+
+          <div class="space-y-2">
+            <label class="text-[9px] font-black text-primary-400 uppercase tracking-[0.3em] ml-2">{{ t('login.label_pass') }}</label>
+            <div class="relative group">
+              <Lock class="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-primary-300 group-focus-within:text-secondary-600  dark:group-focus-within:text-dark-600  transition-colors" />
+              <input v-model="form.password" type="password" class="w-full pl-12 md:pl-14 pr-6 py-4 md:py-5 bg-white/50 dark:bg-primary-950/40 border border-primary-100 dark:border-primary-800 rounded-xl md:rounded-2xl focus:outline-none focus:border-secondary-600 dark:focus:border-dark-600 dark:text-white transition-all font-bold text-sm" placeholder="••••••••" />
+            </div>
+          </div>
+
+          <Transition name="fade">
+            <div v-if="error" class="p-3 md:p-4 bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-[9px] md:text-[10px] font-black uppercase tracking-wider rounded-xl flex items-center gap-3">
+              <div class="w-1 h-1 rounded-full bg-red-500 animate-ping"></div>
+              {{ error }}
+            </div>
+          </Transition>
+
+          <button type="submit" :disabled="isLoading" class="w-full py-4 md:py-5 bg-secondary-600 dark:bg-dark-600 hover:bg-secondary-700 dark:hover:bg-dark-700 text-white rounded-xl md:rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl transition-all active:scale-95 disabled:opacity-70 flex items-center justify-center gap-3">
+            <span v-if="!isLoading">{{ t('login.btn_login') }}</span>
+            <ArrowRight v-if="!isLoading" class="w-4 h-4" />
+            <div v-else class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+          </button>
+        </form>
+
+        <div class="mt-8 md:mt-12 text-center border-t border-primary-50 dark:border-primary-800 pt-6 md:pt-8">
+          <p class="text-[8px] md:text-[9px] font-black text-primary-300 uppercase tracking-[0.3em]">© 2026 {{ t('login.footer') }}</p>
         </div>
-
-        <Transition name="fade">
-          <div v-if="error" class="p-3 md:p-4 bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-[9px] md:text-[10px] font-black uppercase tracking-wider rounded-xl flex items-center gap-3">
-            <div class="w-1 h-1 rounded-full bg-red-500 animate-ping"></div>
-            {{ error }}
-          </div>
-        </Transition>
-
-        <button type="submit" :disabled="isLoading" class="w-full py-4 md:py-5 bg-secondary-600 dark:bg-dark-600 hover:bg-secondary-700 dark:hover:bg-dark-700 text-white rounded-xl md:rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl transition-all active:scale-95 disabled:opacity-70 flex items-center justify-center gap-3">
-          <span v-if="!isLoading">{{ t('login.btn_login') }}</span>
-          <ArrowRight v-if="!isLoading" class="w-4 h-4" />
-          <div v-else class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-        </button>
-      </form>
-
-      <div class="mt-8 md:mt-12 text-center border-t border-primary-50 dark:border-primary-800 pt-6 md:pt-8">
-        <p class="text-[8px] md:text-[9px] font-black text-primary-300 uppercase tracking-[0.3em]">© 2026 {{ t('login.footer') }}</p>
       </div>
     </div>
-  </div>
+
+  </MainLayout>
 </template>
 
 <style scoped>

@@ -51,10 +51,16 @@ const messages = {
                     category: "Gathering",
                     desc: "Momen di mana tembok pembatas antar individu runtuh, digantikan oleh tawa dan janji untuk berjuang bersama."
                 },
-                others: {
-                    title: "Kegiatan Angkatan",
+                ba2026: {
+                    title: "Baitul Arqam 2026",
+                    category: "Gathering",
+                    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi facere fuga impedit, ipsum nesciunt perspiciatis?\n."
+                },
+
+                bukber: {
+                    title: "Buka Bersama Angkatan 2026",
                     category: "Event",
-                    desc: "Dokumentasi berbagai kegiatan positif mahasiswa Informatika Angkatan 2025."
+                    desc: "Buka bersama angkatan 2025 di bulan ramadhan."
                 }
             }
         },

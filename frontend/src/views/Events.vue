@@ -13,6 +13,7 @@ import {
 
 import Image1 from '../assets/img/makrab/makrab1.jpg'
 import Image2 from '../assets/img/bukber/bukber1.jpg'
+import MainLayout from "../components/layouts/landing/MainLayout.vue";
 
 const { t } = useI18n();
 const themeStore = useThemeStore();
@@ -127,101 +128,103 @@ const events = ref([
 </script>
 
 <template>
-  <section id="events" class="py-24 bg-white dark:bg-primary-950 relative overflow-hidden transition-colors duration-500">
+  <MainLayout>
+    <section id="events" class="py-24 bg-white dark:bg-primary-950 relative overflow-hidden transition-colors duration-500">
 
-    <canvas ref="canvasRef" class="absolute inset-0 pointer-events-none z-0 opacity-60"></canvas>
+      <canvas ref="canvasRef" class="absolute inset-0 pointer-events-none z-0 opacity-60"></canvas>
 
-    <div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
-      <div class="absolute top-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-secondary-600/10 dark:bg-dark-600/10 blur-[120px] animate-pulse"></div>
-      <div class="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full bg-dark-600/10 dark:bg-secondary-600/10 blur-[120px] animate-pulse"></div>
-    </div>
-
-    <div class="max-w-6xl mx-auto px-6 relative z-10">
-
-      <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
-        <div class="max-w-xl">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-1 bg-secondary-600 dark:bg-dark-600 rounded-full"></div>
-            <span class="text-secondary-600 dark:text-dark-400 font-black uppercase tracking-[0.4em] text-[10px]">
-              {{ t('events.badge') }}
-            </span>
-          </div>
-          <h2 class="text-4xl md:text-5xl font-black text-primary-900 dark:text-white leading-[1] tracking-tighter uppercase">
-            {{ t('events.title_main') }} <span class="text-secondary-600 dark:text-dark-600 italic">{{ t('events.title_highlight') }}</span>
-          </h2>
-        </div>
+      <div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+        <div class="absolute top-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-secondary-600/10 dark:bg-dark-600/10 blur-[120px] animate-pulse"></div>
+        <div class="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full bg-dark-600/10 dark:bg-secondary-600/10 blur-[120px] animate-pulse"></div>
       </div>
 
-      <div class="max-w-5xl mx-auto space-y-10">
-        <div
-            v-for="(event, idx) in events"
-            :key="event.id"
-            :id="`event-card-${event.id}`"
-            @mousemove="handleMouseMove($event, event.id)"
-            v-motion
-            :initial="{ opacity: 0, y: 30 }"
-            :visible="{ opacity: 1, y: 0, transition: { delay: idx * 150, duration: 800 } }"
-            class="event-card group relative bg-white/40 dark:bg-primary-900/10 backdrop-blur-[20px] rounded-[3rem] border border-white/60 dark:border-primary-800/40 overflow-hidden flex flex-col md:flex-row items-stretch transition-all duration-500 hover:shadow-2xl"
-        >
-          <div class="glow-overlay pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+      <div class="max-w-6xl mx-auto px-6 relative z-10">
 
-          <div class="md:w-[35%] relative overflow-hidden min-h-[250px] z-20">
-            <img
-                :src="event.image"
-                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100"
-            />
-            <div class="absolute bottom-6 left-6 z-20">
-              <div class="bg-white/20 backdrop-blur-xl border border-white/30 px-4 py-2 rounded-2xl flex items-center gap-2">
-                <component :is="event.icon" class="w-4 h-4 text-white" />
-                <span class="text-[10px] font-black text-white uppercase tracking-widest">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+          <div class="max-w-xl">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-1 bg-secondary-600 dark:bg-dark-600 rounded-full"></div>
+              <span class="text-secondary-600 dark:text-dark-400 font-black uppercase tracking-[0.4em] text-[10px]">
+              {{ t('events.badge') }}
+            </span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-primary-900 dark:text-white leading-[1] tracking-tighter uppercase">
+              {{ t('events.title_main') }} <span class="text-secondary-600 dark:text-dark-600 italic">{{ t('events.title_highlight') }}</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto space-y-10">
+          <div
+              v-for="(event, idx) in events"
+              :key="event.id"
+              :id="`event-card-${event.id}`"
+              @mousemove="handleMouseMove($event, event.id)"
+              v-motion
+              :initial="{ opacity: 0, y: 30 }"
+              :visible="{ opacity: 1, y: 0, transition: { delay: idx * 150, duration: 800 } }"
+              class="event-card group relative bg-white/40 dark:bg-primary-900/10 backdrop-blur-[20px] rounded-[3rem] border border-white/60 dark:border-primary-800/40 overflow-hidden flex flex-col md:flex-row items-stretch transition-all duration-500 hover:shadow-2xl"
+          >
+            <div class="glow-overlay pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+
+            <div class="md:w-[35%] relative overflow-hidden min-h-[250px] z-20">
+              <img
+                  :src="event.image"
+                  class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+              />
+              <div class="absolute bottom-6 left-6 z-20">
+                <div class="bg-white/20 backdrop-blur-xl border border-white/30 px-4 py-2 rounded-2xl flex items-center gap-2">
+                  <component :is="event.icon" class="w-4 h-4 text-white" />
+                  <span class="text-[10px] font-black text-white uppercase tracking-widest">
                   {{ t(event.categoryKey) }}
                 </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex-1 p-8 md:p-12 flex flex-col justify-between z-20 relative">
-            <div>
-              <div class="inline-flex items-center gap-3 mb-6 text-[10px] font-black text-primary-500 dark:text-primary-400 uppercase tracking-[0.2em] bg-white/50 dark:bg-primary-950/40 px-5 py-2.5 rounded-full border border-white/40 dark:border-primary-800/50 shadow-sm">
-                <Calendar class="w-4 h-4 text-secondary-600 dark:text-dark-400" />
-                {{ event.date }}
-              </div>
-
-              <h3 class="text-2xl md:text-4xl font-black text-primary-900 dark:text-white mb-5 group-hover:text-secondary-600 dark:group-hover:text-dark-400 transition-colors tracking-tighter uppercase leading-tight">
-                {{ t(event.titleKey) }}
-              </h3>
-
-              <p class="text-primary-500 dark:text-primary-400 text-base leading-relaxed mb-8 max-w-xl font-medium tracking-tight">
-                {{ t(event.descKey) }}
-              </p>
-            </div>
-
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-primary-100/50 dark:border-primary-800/30">
-              <div class="flex items-center gap-5 group/loc">
-                <div class="w-12 h-12 rounded-2xl bg-secondary-50/50 dark:bg-primary-900/50 backdrop-blur-md flex items-center justify-center text-secondary-600 dark:text-dark-400 shadow-sm transition-all group-hover/loc:bg-secondary-600 group-hover/loc:text-white">
-                  <MapPin class="w-6 h-6" />
                 </div>
-                <div class="flex flex-col">
+              </div>
+            </div>
+
+            <div class="flex-1 p-8 md:p-12 flex flex-col justify-between z-20 relative">
+              <div>
+                <div class="inline-flex items-center gap-3 mb-6 text-[10px] font-black text-primary-500 dark:text-primary-400 uppercase tracking-[0.2em] bg-white/50 dark:bg-primary-950/40 px-5 py-2.5 rounded-full border border-white/40 dark:border-primary-800/50 shadow-sm">
+                  <Calendar class="w-4 h-4 text-secondary-600 dark:text-dark-400" />
+                  {{ event.date }}
+                </div>
+
+                <h3 class="text-2xl md:text-4xl font-black text-primary-900 dark:text-white mb-5 group-hover:text-secondary-600 dark:group-hover:text-dark-400 transition-colors tracking-tighter uppercase leading-tight">
+                  {{ t(event.titleKey) }}
+                </h3>
+
+                <p class="text-primary-500 dark:text-primary-400 text-base leading-relaxed mb-8 max-w-xl font-medium tracking-tight">
+                  {{ t(event.descKey) }}
+                </p>
+              </div>
+
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-primary-100/50 dark:border-primary-800/30">
+                <div class="flex items-center gap-5 group/loc">
+                  <div class="w-12 h-12 rounded-2xl bg-secondary-50/50 dark:bg-primary-900/50 backdrop-blur-md flex items-center justify-center text-secondary-600 dark:text-dark-400 shadow-sm transition-all group-hover/loc:bg-secondary-600 group-hover/loc:text-white">
+                    <MapPin class="w-6 h-6" />
+                  </div>
+                  <div class="flex flex-col">
                   <span class="text-[9px] text-primary-400 font-black uppercase tracking-[0.3em] mb-1">
                     {{ t('events.location_label') }}
                   </span>
-                  <span class="text-sm font-black text-primary-900 dark:text-white tracking-tight uppercase">{{ event.location }}</span>
+                    <span class="text-sm font-black text-primary-900 dark:text-white tracking-tight uppercase">{{ event.location }}</span>
+                  </div>
                 </div>
-              </div>
 
-              <router-link
-                  :to="`/gallery/${event.slug}`"
-                  class="w-full sm:w-auto flex items-center justify-center gap-4 bg-primary-900 dark:bg-dark-600 text-white px-10 py-4.5 rounded-[1.5rem] font-black text-[11px] uppercase tracking-widest hover:bg-secondary-600 dark:hover:bg-dark-700 transition-all active:scale-95 group/btn shadow-xl shadow-primary-900/10 dark:shadow-none"
-              >
-                {{ t('events.btn_documentation') }}
-                <ArrowUpRight class="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-              </router-link>
+                <router-link
+                    :to="`/gallery/${event.slug}`"
+                    class="w-full sm:w-auto flex items-center justify-center gap-4 bg-primary-900 dark:bg-dark-600 text-white px-10 py-4.5 rounded-[1.5rem] font-black text-[11px] uppercase tracking-widest hover:bg-secondary-600 dark:hover:bg-dark-700 transition-all active:scale-95 group/btn shadow-xl shadow-primary-900/10 dark:shadow-none"
+                >
+                  {{ t('events.btn_documentation') }}
+                  <ArrowUpRight class="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </MainLayout>
 </template>
 
 <style scoped>
