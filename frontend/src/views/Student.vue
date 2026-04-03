@@ -181,7 +181,7 @@ const filteredStudents = computed(() => {
 
 <template>
   <MainLayout>
-    <section class="py-32 bg-white dark:bg-primary-950 min-h-screen relative overflow-hidden selection:bg-secondary-600 selection:text-white transition-colors duration-500 overflow-hidden">
+    <section class="py-32 bg-white dark:bg-primary-950 min-h-screen relative selection:bg-secondary-600 selection:text-white transition-colors duration-500 overflow-hidden">
 
       <canvas ref="threeCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-100 dark:opacity-70"></canvas>
 

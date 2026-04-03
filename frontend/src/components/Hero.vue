@@ -193,10 +193,10 @@ const toggleMusic = () => musicStore.togglePlay();
       </swiper>
 
       <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 z-50 pointer-events-none flex justify-between px-6 md:px-12">
-        <button class="custom-prev pointer-events-auto w-16 h-16 rounded-full bg-primary-900/10 dark:bg-white/10 backdrop-blur-2xl text-primary-900 dark:text-white border border-primary-900/20 dark:border-white/20 flex items-center justify-center hover:bg-secondary-600 hover:text-white transition-all active:scale-90 shadow-xl group/btn">
+        <button class="custom-prev hidden pointer-events-auto w-16 h-16 rounded-full bg-primary-900/10 dark:bg-white/10 backdrop-blur-2xl text-primary-900 dark:text-white border border-primary-900/20 dark:border-white/20 md:flex lg:flex items-center justify-center hover:bg-secondary-600 dark:hover:bg-dark-600 hover:text-white transition-all active:scale-90 shadow-xl group/btn">
           <ChevronLeft class="w-10 h-10 group-hover/btn:-translate-x-1 transition-transform" />
         </button>
-        <button class="custom-next pointer-events-auto w-16 h-16 rounded-full bg-primary-900/10 dark:bg-white/10 backdrop-blur-2xl text-primary-900 dark:text-white border border-primary-900/20 dark:border-white/20 flex items-center justify-center hover:bg-secondary-600 hover:text-white transition-all active:scale-90 shadow-xl group/btn">
+        <button class="custom-next hidden pointer-events-auto w-16 h-16 rounded-full bg-primary-900/10 dark:bg-white/10 backdrop-blur-2xl text-primary-900 dark:text-white border border-primary-900/20 dark:border-white/20 md:flex lg:flex items-center justify-center hover:bg-secondary-600 dark:hover:bg-dark-600 hover:text-white transition-all active:scale-90 shadow-xl group/btn">
           <ChevronRight class="w-10 h-10 group-hover/btn:translate-x-1 transition-transform" />
         </button>
       </div>

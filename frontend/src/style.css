@@ -138,6 +138,10 @@
         text-primary-400 border border-primary-100 dark:border-white/10
         transition-all duration-300 hover:text-secondary-600 dark:hover:text-dark-400 active:scale-90;
     }
+
+    .tabular-nums {
+        font-variant-numeric: tabular-nums;
+    }
 }
 
 @keyframes slideIn {

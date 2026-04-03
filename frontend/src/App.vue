@@ -3,7 +3,9 @@ import { ref, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 import { useThemeStore } from "./stores/themeStore.js";
+import {useAuthStore} from "./stores/authStore.js";
 
+const authStore = useAuthStore();
 const isLoading = ref(false);
 const router = useRouter();
 const route = useRoute();
@@ -23,6 +25,10 @@ router.afterEach(() => {
 
 onMounted(() => {
   themeStore.applyTheme();
+
+  if (authStore.token) {
+    authStore.checkSessionAPI();
+  }
 });
 
 const updateTitle = () => {

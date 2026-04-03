@@ -2,10 +2,10 @@ import { createI18n } from 'vue-i18n';
 
 const messages = {
     ID: {
-        nav: { home: 'Beranda', students: 'Mahasiswa', event: 'Agenda', admin: 'Admin', structure: 'Struktur', about:'Tentang Kami', gallery: 'Galeri Kami' },
+        nav: { home: 'Beranda', students: 'Mahasiswa', event: 'Agenda', admin: 'Admin', structure: 'Struktur', about: 'Tentang Kami', gallery: 'Galeri Kami' },
         hero: {
             buttons: { students: "Lihat Mahasiswa", gallery: "Lihat Galeri" },
-            slides: [ { title: "Informatika 25" }, { title: "Masa Depan" }, { title: "Kreativitas" }, { title: "Solidaritas" } ]
+            slides: [{ title: "Informatika 25" }, { title: "Masa Depan" }, { title: "Kreativitas" }, { title: "Solidaritas" }]
         },
         about: {
             badge: "Awal Perjalanan",
@@ -47,20 +47,19 @@ const messages = {
             },
             items: {
                 makrab: {
-                    title: "Midniight 2026",
+                    title: "Midnight 2026",
                     category: "Gathering",
                     desc: "Momen di mana tembok pembatas antar individu runtuh, digantikan oleh tawa dan janji untuk berjuang bersama."
                 },
                 ba2026: {
                     title: "Baitul Arqam 2026",
-                    category: "Gathering",
-                    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi facere fuga impedit, ipsum nesciunt perspiciatis?\n."
+                    category: "Religius",
+                    desc: "Kegiatan penguatan ideologi dan karakter islami untuk membekali mahasiswa dalam perjalanan akademik."
                 },
-
                 bukber: {
-                    title: "Buka Bersama Angkatan 2026",
+                    title: "Buka Bersama 2026",
                     category: "Event",
-                    desc: "Buka bersama angkatan 2025 di bulan ramadhan."
+                    desc: "Momen hangat berbagi hidangan dan kebahagiaan di bulan suci Ramadhan."
                 }
             }
         },
@@ -81,6 +80,17 @@ const messages = {
             labels: { name: 'Nama Lengkap', address: 'Domisili', school: 'Asal Sekolah', goal: 'Cita-Cita', hobby: 'Hobi' },
             portfolio_desc1: 'Membangun platform digital angkatan dengan teknologi modern.',
             portfolio_desc2: 'Sistem manajemen terintegrasi untuk pondok pesantren.'
+        },
+        studentDashboard: {
+            welcome: "Selamat Datang,",
+            badge: "Mahasiswa Aktif",
+            session_expired: "Sesi Anda telah berakhir. Silakan login kembali.",
+            edit_profile: "Edit Profil Saya",
+            stats: {
+                visitors: "Kunjungan Profil",
+                projects: "Total Proyek",
+                events: "Agenda Diikuti"
+            }
         },
         events: {
             badge: "Agenda Terlewati",
@@ -108,19 +118,19 @@ const messages = {
             title_part1: "Admin",
             title_highlight: "Access",
             badge: "Gatekeeper Protocol",
-            label_user: "Username",
+            label_user: "Username / NIM",
             label_pass: "Password",
             btn_login: "Masuk ke Dashboard",
             error_empty: "Username dan password wajib diisi",
-            error_wrong: "Username atau password salah (Gunakan admin/admin)",
+            error_wrong: "Username atau password salah",
             footer: "Informatika 25 Protocol"
         },
     },
     EN: {
-        nav: { home: 'Home', students: 'Students', event: 'Events', admin: 'Admin', structure: 'Structure', about:'About Us', gallery: 'Our Gallery' },
+        nav: { home: 'Home', students: 'Students', event: 'Events', admin: 'Admin', structure: 'Structure', about: 'About Us', gallery: 'Our Gallery' },
         hero: {
             buttons: { students: "View Students", gallery: "View Gallery" },
-            slides: [ { title: "Informatics 25" }, { title: "The Future" }, { title: "Creativity" }, { title: "Solidarity" } ]
+            slides: [{ title: "Informatics 25" }, { title: "The Future" }, { title: "Creativity" }, { title: "Solidarity" }]
         },
         about: {
             badge: "The Beginning",
@@ -150,6 +160,34 @@ const messages = {
             title_highlight: 'Gallery',
             empty: 'No documentation available for this category.'
         },
+        galleryEventDetail: {
+            back: "Back",
+            visualArchive: "Visual Archive",
+            totalPhotos: "Documentation Photos",
+            about: "About This Moment",
+            info: {
+                date: "Execution Time",
+                location: "Location Point",
+                participants: "Total Participants"
+            },
+            items: {
+                makrab: {
+                    title: "Midnight 2026",
+                    category: "Gathering",
+                    desc: "The moment where the dividing walls between individuals collapsed, replaced by laughter and promises to fight together."
+                },
+                ba2026: {
+                    title: "Baitul Arqam 2026",
+                    category: "Religious",
+                    desc: "Strengthening of Islamic ideology and character to equip students for their academic journey."
+                },
+                bukber: {
+                    title: "Iftar Together 2026",
+                    category: "Event",
+                    desc: "A warm moment of sharing meals and happiness in the holy month of Ramadan."
+                }
+            }
+        },
         students: {
             badge: 'Batch Database',
             title_part1: 'Student',
@@ -167,6 +205,17 @@ const messages = {
             labels: { name: 'Full Name', address: 'Domicile', school: 'Previous School', goal: 'Life Goal', hobby: 'Hobby' },
             portfolio_desc1: 'Building batch digital platform with modern technology.',
             portfolio_desc2: 'Integrated management system for Islamic schools.'
+        },
+        studentDashboard: {
+            welcome: "Welcome,",
+            badge: "Active Student",
+            session_expired: "Your session has expired. Please log in again.",
+            edit_profile: "Edit My Profile",
+            stats: {
+                visitors: "Profile Visits",
+                projects: "Total Projects",
+                events: "Events Joined"
+            }
         },
         events: {
             badge: "Past Events",
@@ -194,11 +243,11 @@ const messages = {
             title_part1: "Admin",
             title_highlight: "Access",
             badge: "Gatekeeper Protocol",
-            label_user: "Username",
+            label_user: "Username / ID",
             label_pass: "Password",
             btn_login: "Sign to Dashboard",
             error_empty: "Username and password are required",
-            error_wrong: "Invalid username or password (Use admin/admin)",
+            error_wrong: "Invalid username or password",
             footer: "Informatics 25 Protocol"
         },
     },
@@ -206,7 +255,7 @@ const messages = {
         nav: { home: 'الرئيسية', students: 'الطلاب', event: 'الأجندة', admin: 'مسؤول', structure: 'الهيكل', about: 'نبذة عنا', gallery: 'معرضنا' },
         hero: {
             buttons: { students: "قائمة الطلاب", gallery: "معرض الصور" },
-            slides: [ { title: "المعلوماتية 25" }, { title: "المستقبل" }, { title: "الإبداع" }, { title: "التضامن" } ]
+            slides: [{ title: "المعلوماتية 25" }, { title: "المستقبل" }, { title: "الإبداع" }, { title: "التضامن" }]
         },
         about: {
             badge: "بداية الرحلة",
@@ -236,6 +285,34 @@ const messages = {
             title_highlight: 'الدفعة',
             empty: 'لا توجد وثائق لهذه الفئة بعد.'
         },
+        galleryEventDetail: {
+            back: "رجوع",
+            visualArchive: "الأرشيف البصري",
+            totalPhotos: "صور التوثيق",
+            about: "عن هذه اللحظة",
+            info: {
+                date: "وقت التنفيذ",
+                location: "موقع الموقع",
+                participants: "إجمالي المشاركين"
+            },
+            items: {
+                makrab: {
+                    title: "منتصف الليل 2026",
+                    category: "تجمع",
+                    desc: "اللحظة التي نهارت فيها الجدران الفاصلة بين الأفراد، وحل محلها الضحك والوعود بالقتال معاً."
+                },
+                ba2026: {
+                    title: "بيت الأرقم 2026",
+                    category: "ديني",
+                    desc: "تعزيز الأيديولوجية والشخصية الإسلامية لتجهيز الطلاب لرحلتهم الأكاديمية."
+                },
+                bukber: {
+                    title: "إفطار جماعي 2026",
+                    category: "حدث",
+                    desc: "لحظة دافئة لمشاركة الوجبات والسعادة في شهر رمضان المبارك."
+                }
+            }
+        },
         students: {
             badge: 'قاعدة بيانات الدفعة',
             title_part1: 'دليل',
@@ -245,6 +322,23 @@ const messages = {
             sort_nim: 'ترتيب بالرقم',
             view_profile: 'عرض الملف الشخصي',
             no_results: 'لم يتم العثور على نتائج.'
+        },
+        studentDetail: {
+            back: 'العودة إلى الدليل',
+            default_quote: 'استكشاف بلا حدود في عالم البرمجة.',
+            tabs: { profile: 'الملف الشخصي', portfolio: 'المحفظة', gallery: 'المعرض' },
+            labels: { name: 'الاسم الكامل', address: 'السكن', school: 'المدرسة السابقة', goal: 'هدف الحياة', hobby: 'الهواية' }
+        },
+        studentDashboard: {
+            welcome: "مرحباً بك،",
+            badge: "طالب نشط",
+            session_expired: "انتهت جلستك. يرجى تسجيل الدخول مرة أخرى.",
+            edit_profile: "تعديل ملفي الشخصي",
+            stats: {
+                visitors: "زيارات الملف",
+                projects: "إجمالي المشاريع",
+                events: "الأحداث المشارك فيها"
+            }
         },
         events: {
             badge: "الأحداث السابقة",
@@ -267,16 +361,16 @@ const messages = {
             building_detail: "مبنى مختبر الهندسة / الطابق الرابع",
             address: "شارع سوتوريجو رقم 59، سورابايا"
         },
-        login : {
+        login: {
             back: "رجوع",
             title_part1: "وصول",
             title_highlight: "المشرف",
             badge: "بوابة الدخول",
             label_user: "اسم المستخدم",
             label_pass: "كلمة المرور",
-            btn_login: "تسجيل الدخول إلى لوحة التحكم",
+            btn_login: "تسجيل الدخول",
             error_empty: "اسم المستخدم وكلمة المرور مطلوبان",
-            error_wrong: "اسم المستخدم أو كلمة المرور غير صحيحة",
+            error_wrong: "بيانات الاعتماد غير صالحة",
             footer: "نظام معلوماتية 25"
         }
     },
@@ -284,7 +378,7 @@ const messages = {
         nav: { home: 'ホーム', students: '学生', event: '予定', admin: '管理者', structure: '組織', about: '私たちについて', gallery: 'ギャラリー' },
         hero: {
             buttons: { students: "学生リスト", gallery: "ギャラリー" },
-            slides: [ { title: "情報学 25" }, { title: "未来" }, { title: "創造性" }, { title: "連帯" } ]
+            slides: [{ title: "情報学 25" }, { title: "未来" }, { title: "創造性" }, { title: "連帯" }]
         },
         about: {
             badge: "旅の始まり",
@@ -314,6 +408,34 @@ const messages = {
             title_highlight: 'ギャラリー',
             empty: 'このカテゴリにはまだ記録がありません。'
         },
+        galleryEventDetail: {
+            back: "戻る",
+            visualArchive: "ビジュアルアーカイブ",
+            totalPhotos: "ドキュメント写真",
+            about: "この瞬間について",
+            info: {
+                date: "実施時間",
+                location: "ロケーション",
+                participants: "参加者数"
+            },
+            items: {
+                makrab: {
+                    title: "ミッドナイト 2026",
+                    category: "交流会",
+                    desc: "個人間の壁が崩れ、笑いと共に戦う約束に変わった瞬間。"
+                },
+                ba2026: {
+                    title: "バイトゥル・アルカム 2026",
+                    category: "宗教的",
+                    desc: "学問の旅に備え、イスラムのイデオロギーと人格を強化する活動。"
+                },
+                bukber: {
+                    title: "2026年合同イフタール",
+                    category: "イベント",
+                    desc: "聖なるラマダン月に食事と幸せを分かち合う温かい瞬間。"
+                }
+            }
+        },
         students: {
             badge: '学生データベース',
             title_part1: '学生',
@@ -323,6 +445,23 @@ const messages = {
             sort_nim: '学籍番号順',
             view_profile: 'プロフィールを表示',
             no_results: '結果が見つかりませんでした。'
+        },
+        studentDetail: {
+            back: '名簿に戻る',
+            default_quote: 'コードの世界での無限の探索。',
+            tabs: { profile: 'プロフィール', portfolio: 'ポートフォリオ', gallery: 'ギャラリー' },
+            labels: { name: '氏名', address: '居住地', school: '出身校', goal: '将来の目標', hobby: '趣味' }
+        },
+        studentDashboard: {
+            welcome: "ようこそ、",
+            badge: "在学生",
+            session_expired: "セッションが期限切れです。再ログインしてください。",
+            edit_profile: "プロフィールを編集",
+            stats: {
+                visitors: "プロフィール訪問",
+                projects: "プロジェクト数",
+                events: "参加イベント"
+            }
         },
         events: {
             badge: "過去のイベント",
@@ -352,7 +491,7 @@ const messages = {
             badge: "ログインポータル",
             label_user: "ユーザー名",
             label_pass: "パスワード",
-            btn_login: "ダッシュボードへログイン",
+            btn_login: "ログイン",
             error_empty: "ユーザー名とパスワードは必須です",
             error_wrong: "ユーザー名またはパスワードが正しくありません",
             footer: "情報学25システム"
@@ -362,7 +501,7 @@ const messages = {
         nav: { home: '首页', students: '学生', event: '议程', admin: '管理', structure: '结构', about: '关于我们', gallery: '我们的画廊' },
         hero: {
             buttons: { students: "学生名单", gallery: "查看画廊" },
-            slides: [ { title: "信息学 25" }, { title: "未来" }, { title: "创造力" }, { title: "团结" } ]
+            slides: [{ title: "信息学 25" }, { title: "未来" }, { title: "创造力" }, { title: "团结" }]
         },
         about: {
             badge: "旅程开始",
@@ -392,6 +531,34 @@ const messages = {
             title_highlight: '画廊',
             empty: '该分类暂无相关记录。'
         },
+        galleryEventDetail: {
+            back: "返回",
+            visualArchive: "视觉档案",
+            totalPhotos: "照片数量",
+            about: "关于这一刻",
+            info: {
+                date: "活动日期",
+                location: "地点位置",
+                participants: "参与人数"
+            },
+            items: {
+                makrab: {
+                    title: "午夜 2026",
+                    category: "聚会",
+                    desc: "人与人之间的隔阂消失，被笑声和共同奋斗的承诺所取代。"
+                },
+                ba2026: {
+                    title: "拜图·阿卡姆 2026",
+                    category: "宗教",
+                    desc: "加强伊斯兰思想和品格，为学生的学术之旅做好准备。"
+                },
+                bukber: {
+                    title: "2026年集体开斋",
+                    category: "活动",
+                    desc: "斋月里分享美食与幸福的温馨时刻。"
+                }
+            }
+        },
         students: {
             badge: '届学生数据库',
             title_part1: '学生',
@@ -401,6 +568,23 @@ const messages = {
             sort_nim: '学号排序',
             view_profile: '查看详情',
             no_results: '未找到结果。'
+        },
+        studentDetail: {
+            back: '返回目录',
+            default_quote: '在代码世界中无限探索。',
+            tabs: { profile: '基本信息', portfolio: '作品集', gallery: '相册' },
+            labels: { name: '全名', address: '居住地', school: '毕业学校', goal: '人生目标', hobby: '兴趣爱好' }
+        },
+        studentDashboard: {
+            welcome: "欢迎，",
+            badge: "在校学生",
+            session_expired: "登录过期，请重新登录。",
+            edit_profile: "编辑个人资料",
+            stats: {
+                visitors: "资料访客",
+                projects: "项目总数",
+                events: "参加活动"
+            }
         },
         events: {
             badge: "往期活动",
@@ -430,8 +614,8 @@ const messages = {
             badge: "登录入口",
             label_user: "用户名",
             label_pass: "密码",
-            btn_login: "登录到后台",
-            error_empty: "请输入用户名和密码",
+            btn_login: "登录",
+            error_empty: "用户名和密码是必填项",
             error_wrong: "用户名或密码错误",
             footer: "信息学25系统"
         }
@@ -440,7 +624,7 @@ const messages = {
         nav: { home: '홈', students: '학생', event: '일정', admin: '관리', structure: '조직', about: '회사 소개', gallery: '갤러리' },
         hero: {
             buttons: { students: "학생 명단", gallery: "갤러리 보기" },
-            slides: [ { title: "정보공학 25" }, { title: "미래" }, { title: "창의성" }, { title: "연대" } ]
+            slides: [{ title: "정보공학 25" }, { title: "미래" }, { title: "창의성" }, { title: "연대" }]
         },
         about: {
             badge: "여정의 시작",
@@ -470,6 +654,34 @@ const messages = {
             title_highlight: '갤러리',
             empty: '이 카테고리에는 아직 기록이 없습니다.'
         },
+        galleryEventDetail: {
+            back: "뒤로",
+            visualArchive: "비주얼 아카이브",
+            totalPhotos: "사진 수",
+            about: "이 순간에 대하여",
+            info: {
+                date: "실행 날짜",
+                location: "위치 지점",
+                participants: "참가 인원"
+            },
+            items: {
+                makrab: {
+                    title: "미드나잇 2026",
+                    category: "친목회",
+                    desc: "개인 간의 벽이 무너지고, 함께 웃으며 싸우겠다는 약속으로 바뀐 순간."
+                },
+                ba2026: {
+                    title: "바이툴 아르캄 2026",
+                    category: "종교",
+                    desc: "학생들의 학업 여정을 돕기 위해 이슬람 사상과 인격을 강화하는 활동."
+                },
+                bukber: {
+                    title: "2026년 합동 이프타르",
+                    category: "이벤트",
+                    desc: "신성한 라마단 기간 동안 식사와 행복을 나누는 따뜻한 순간."
+                }
+            }
+        },
         students: {
             badge: '학생 데이터베이스',
             title_part1: '학생',
@@ -479,6 +691,23 @@ const messages = {
             sort_nim: '학번순',
             view_profile: '프로필 보기',
             no_results: '결과가 없습니다.'
+        },
+        studentDetail: {
+            back: '목록으로 돌아가기',
+            default_quote: '코드 세계에서의 무한한 탐험.',
+            tabs: { profile: '프로필', portfolio: '포트폴리오', gallery: '갤러리' },
+            labels: { name: '이름', address: '거주지', school: '출신 학교', goal: '인생 목표', hobby: '취미' }
+        },
+        studentDashboard: {
+            welcome: "환영합니다,",
+            badge: "재학생",
+            session_expired: "세션이 만료되었습니다. 다시 로그인하세요.",
+            edit_profile: "프로필 수정",
+            stats: {
+                visitors: "프로필 방문",
+                projects: "총 프로젝트",
+                events: "참여 일정"
+            }
         },
         events: {
             badge: "지난 일정",
@@ -508,7 +737,7 @@ const messages = {
             badge: "로그인 포털",
             label_user: "아이디",
             label_pass: "비밀번호",
-            btn_login: "대시보드 로그인",
+            btn_login: "로그인",
             error_empty: "아이디와 비밀번호를 입력하세요",
             error_wrong: "아이디 또는 비밀번호가 올바르지 않습니다",
             footer: "정보학 25 시스템"

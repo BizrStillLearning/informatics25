@@ -80,7 +80,7 @@ const initThree = () => {
 
     const theta = Math.random() * Math.PI * 2;
     const phi = Math.acos((Math.random() * 2) - 1);
-    const speed = 0.15 + Math.random() * 0.5; // Kecepatan ditambah
+    const speed = 0.15 + Math.random() * 0.5;
 
     velocities[i * 3] = Math.sin(phi) * Math.cos(theta) * speed;
     velocities[i * 3 + 1] = Math.sin(phi) * Math.sin(theta) * speed;
@@ -183,7 +183,7 @@ const handleLogin = async () => {
   }
 };
 
-const goToLanding = () => router.push('/')
+// const goToLanding = () => router.push('/')
 </script>
 
 <template>
@@ -197,13 +197,13 @@ const goToLanding = () => router.push('/')
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] md:w-[80%] md:h-[80%] rounded-full bg-secondary-600/10 dark:bg-dark-600/10 blur-[150px]"></div>
       </div>
 
-      <button
-          @click="goToLanding"
-          class="absolute top-4 left-4 md:top-8 md:left-8 z-20 flex items-center gap-2 md:gap-3 px-4 py-2 md:px-6 md:py-3 bg-white/50 dark:bg-primary-900/40 backdrop-blur-xl text-primary-900 dark:text-primary-100 rounded-xl md:rounded-2xl shadow-sm border border-white/50 dark:border-primary-800 transition-all active:scale-95 text-[10px] font-black uppercase tracking-widest"
-      >
-        <Home class="w-3.5 h-3.5 md:w-4 md:h-4 text-secondary-600 dark:text-dark-600" />
-        <span>{{ t('login.back') }}</span>
-      </button>
+<!--      <button-->
+<!--          @click="goToLanding"-->
+<!--          class="absolute top-4 left-4 md:top-8 md:left-8 z-20 flex items-center gap-2 md:gap-3 px-4 py-2 md:px-6 md:py-3 bg-white/50 dark:bg-primary-900/40 backdrop-blur-xl text-primary-900 dark:text-primary-100 rounded-xl md:rounded-2xl shadow-sm border border-white/50 dark:border-primary-800 transition-all active:scale-95 text-[10px] font-black uppercase tracking-widest"-->
+<!--      >-->
+<!--        <Home class="w-3.5 h-3.5 md:w-4 md:h-4 text-secondary-600 dark:text-dark-600" />-->
+<!--        <span>{{ t('login.back') }}</span>-->
+<!--      </button>-->
 
       <div
           class="w-full max-w-[420px] p-6 sm:p-10 bg-white/60 dark:bg-primary-900/20 backdrop-blur-3xl rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl z-10 border border-white dark:border-primary-800"
@@ -226,7 +226,7 @@ const goToLanding = () => router.push('/')
             <label class="text-[9px] font-black text-primary-400 uppercase tracking-[0.3em] ml-2">{{ t('login.label_user') }}</label>
             <div class="relative group">
               <User class="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-primary-300 group-focus-within:text-secondary-600 dark:group-focus-within:text-dark-600 transition-colors" />
-              <input v-model="form.identifier" type="text" class="w-full pl-12 md:pl-14 pr-6 py-4 md:py-5 bg-white/50 dark:bg-primary-950/40 border border-primary-100 dark:border-primary-800 rounded-xl md:rounded-2xl focus:outline-none focus:border-secondary-600 dark:focus:border-dark-600 dark:text-white transition-all font-bold text-sm" placeholder="admin" />
+              <input v-model="form.identifier" type="text" class="w-full pl-12 md:pl-14 pr-6 py-4 md:py-5 bg-white/50 dark:bg-primary-950/40 border border-primary-100 dark:border-primary-800 rounded-xl md:rounded-2xl focus:outline-none focus:border-secondary-600 dark:focus:border-dark-600 dark:text-white transition-all font-bold text-sm" placeholder="" />
             </div>
           </div>
 
@@ -234,7 +234,7 @@ const goToLanding = () => router.push('/')
             <label class="text-[9px] font-black text-primary-400 uppercase tracking-[0.3em] ml-2">{{ t('login.label_pass') }}</label>
             <div class="relative group">
               <Lock class="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-primary-300 group-focus-within:text-secondary-600  dark:group-focus-within:text-dark-600  transition-colors" />
-              <input v-model="form.password" type="password" class="w-full pl-12 md:pl-14 pr-6 py-4 md:py-5 bg-white/50 dark:bg-primary-950/40 border border-primary-100 dark:border-primary-800 rounded-xl md:rounded-2xl focus:outline-none focus:border-secondary-600 dark:focus:border-dark-600 dark:text-white transition-all font-bold text-sm" placeholder="••••••••" />
+              <input v-model="form.password" type="password" class="w-full pl-12 md:pl-14 pr-6 py-4 md:py-5 bg-white/50 dark:bg-primary-950/40 border border-primary-100 dark:border-primary-800 rounded-xl md:rounded-2xl focus:outline-none focus:border-secondary-600 dark:focus:border-dark-600 dark:text-white transition-all font-bold text-sm" placeholder="" />
             </div>
           </div>
 

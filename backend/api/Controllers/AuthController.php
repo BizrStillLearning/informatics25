@@ -19,21 +19,25 @@ class AuthController {
 
     public function login($username, $password) {
         try {
+            // 1. Verifikasi User
             $user = $this->userModel->findByUsername($username);
 
             if (!$user || !password_verify($password, $user['password'])) {
-                return ["status" => false, "message" => "NIM/Username atau Password salah!"];
+                return [
+                    "status" => false,
+                    "message" => "NIM/Username atau Password salah!"
+                ];
             }
 
             $issuedAt = time();
-            $expire = $issuedAt + 600; // 10 Menit
+            $expire = $issuedAt + 10;
 
             $payload = [
                 "iat" => $issuedAt,
                 "exp" => $expire,
                 "iss" => "informatics25-protocol",
                 "data" => [
-                    "id" => $user['id'],
+                    "id" => (int)$user['id'],
                     "role" => $user['role'],
                     "username" => $user['username']
                 ]
@@ -41,39 +45,58 @@ class AuthController {
 
             $jwt = JWT::encode($payload, $this->secret_key, 'HS256');
 
-            // --- LOGIC PROFIL ---
-            $profile = null;
+            $profile = [
+                'full_name' => '',
+                'avatar' => null
+            ];
+
             if ($user['role'] === 'mahasiswa') {
                 $mhsModel = new Mahasiswa($this->db);
-                $profile = $mhsModel->findByUserId($user['id']);
+                $mhsData = $mhsModel->findByUserId($user['id']);
+
+                $profile['full_name'] = $mhsData['nama_lengkap'] ?? $user['username'];
+                $profile['avatar'] = $mhsData['foto'] ?? null;
             } else {
-                // Jika admin, buat profil sederhana
-                $profile = ['full_name' => 'Administrator', 'avatar' => 'admin.jpg'];
+                $profile['full_name'] = $user['username'];
+                $profile['avatar'] = 'admin_default.svg';
             }
 
             return [
                 "status" => true,
                 "message" => "Login Success",
                 "token" => $jwt,
-                "role" => $user['role'],
-                "profile" => $profile // Data profil dikirim ke FE
+                "user" => [
+                    "id" => (int)$user['id'],
+                    "username" => $user['username'],
+                    "role" => $user['role']
+                ],
+                "profile" => $profile
             ];
 
         } catch (Exception $e) {
             http_response_code(500);
-            return ["status" => false, "message" => "Server Error: " . $e->getMessage()];
+            return [
+                "status" => false,
+                "message" => "Critical System Error: " . $e->getMessage()
+            ];
         }
     }
 
     public function checkSession() {
         try {
-            $userData = AuthMiddleware::authenticate();
+            // Pastikan AuthMiddleware mengembalikan data payload JWT yang didecode
+            $decodedPayload = AuthMiddleware::authenticate();
+
             return [
                 "status" => true,
-                "user" => $userData
+                "user" => $decodedPayload->data
             ];
         } catch (Exception $e) {
-            return ["status" => false, "message" => "Invalid Session"];
+            http_response_code(401);
+            return [
+                "status" => false,
+                "message" => "Session Invalid atau Expired"
+            ];
         }
     }
 }
