@@ -46,9 +46,20 @@ try {
         } else {
             echo json_encode(["status" => false, "message" => "Data input kosong"]);
         }
-    } else {
-        // ... logic check-session dll
-        echo json_encode(["status" => false, "message" => "Endpoint $endpoint tidak ditemukan"]);
+    }
+
+    // 2. ROUTE CHECK SESSION (TAMBAHKAN INI)
+    else if ($endpoint === 'check-session' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+        echo json_encode($authController->checkSession());
+    }
+
+    // 3. JIKA ENDPOINT TIDAK TERDAFTAR
+    else {
+        http_response_code(404);
+        echo json_encode([
+            "status" => false,
+            "message" => "Endpoint '$endpoint' tidak ditemukan atau Method salah"
+        ]);
     }
 
 } catch (\Throwable $th) {

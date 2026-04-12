@@ -8,13 +8,21 @@ const api = axios.create({
     withCredentials: true
 });
 
-api.interceptors.request.use((config) => {
-    const authStore = useAuthStore();
-    if (authStore.token) {
-        config.headers.Authorization = `Bearer ${authStore.token}`;
+api.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
     }
-    return config;
-}, (error) => Promise.reject(error));
+);
+
+
+let isAlertActive = false;
 
 api.interceptors.response.use(
     (response) => response,
@@ -24,20 +32,27 @@ api.interceptors.response.use(
         if (error.response && error.response.status === 401) {
             if (router.currentRoute.value.path !== '/login') {
 
-                await Swal.fire({
-                    title: 'Sesi Berakhir!',
-                    text: 'Token Anda sudah habis, silakan login kembali.',
-                    icon: 'warning',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'Login Sekarang',
-                    allowOutsideClick: false
-                });
-
                 authStore.logout();
 
-                router.push('/login');
+                if (!isAlertActive) {
+                    isAlertActive = true;
+
+                    await Swal.fire({
+                        title: 'Sesi Berakhir!',
+                        text: 'Token Anda tidak valid atau sudah kedaluwarsa. Silakan login kembali.',
+                        icon: 'warning',
+                        confirmButtonColor: '#155dfc',
+                        confirmButtonText: 'Login Sekarang',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    }).then(() => {
+                        isAlertActive = false;
+                        router.push('/login');
+                    });
+                }
             }
         }
+
         return Promise.reject(error);
     }
 );

@@ -3,7 +3,7 @@ import { ref, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 import { useThemeStore } from "./stores/themeStore.js";
-import {useAuthStore} from "./stores/authStore.js";
+import { useAuthStore } from "./stores/authStore.js";
 
 const authStore = useAuthStore();
 const isLoading = ref(false);
@@ -23,12 +23,24 @@ router.afterEach(() => {
   }, 1000);
 });
 
-onMounted(() => {
+onMounted(async () => {
   themeStore.applyTheme();
 
-  if (authStore.token) {
-    authStore.checkSessionAPI();
+  const savedToken = localStorage.getItem('token');
+
+  if (savedToken && authStore.isAuthenticated) {
+    try {
+      const isValid = await authStore.checkSessionAPI();
+      if (!isValid) {
+        console.warn("Sesi tidak valid, mengalihkan ke login...");
+        router.push('/login');
+      }
+    } catch (err) {
+      console.error("Gagal verifikasi sesi:", err);
+    }
   }
+
+  updateTitle();
 });
 
 const updateTitle = () => {
@@ -58,6 +70,7 @@ watch([locale, () => route.path], updateTitle);
             </span>
           </div>
         </div>
+
         <div class="mt-8 flex flex-col items-center gap-2">
           <p class="text-[10px] font-black text-primary-900 dark:text-white uppercase tracking-[0.4em] animate-pulse">
             Initializing <span class="text-secondary-600 dark:text-dark-600 italic">System</span>
@@ -66,6 +79,7 @@ watch([locale, () => route.path], updateTitle);
             <div class="h-full bg-secondary-600 dark:bg-dark-600 animate-[loading-bar_1.5s_infinite]"></div>
           </div>
         </div>
+
         <div class="absolute w-64 h-64 bg-secondary-600/10 dark:bg-dark-600/10 rounded-full blur-[100px] animate-pulse"></div>
       </div>
     </Transition>
