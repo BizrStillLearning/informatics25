@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import i18n from '../i18n'
 
 import Home from '../views/Home.vue'
+<<<<<<< HEAD
 import LoginView from "../views/LoginView.vue"
 import GalleriDetail from "../views/GalleriDetail.vue"
 import Student from "../views/Student.vue"
@@ -18,6 +19,19 @@ import SharedSchedules from "../views/shared/Schedules.vue"
 import SharedProfile from "../views/dashboard/Admin/Profile.vue"
 import SharedLibrary from "../views/shared/Library.vue"
 import SharedVault from "../views/shared/Vault.vue"
+=======
+import LoginView from "../views/LoginView.vue";
+import GalleriDetail from "../views/GalleriDetail.vue";
+import Student from "../views/Student.vue";
+import StudentDetail from "../views/StudentDetail.vue";
+import Events from "../views/Events.vue";
+import Index from "../views/dashboard/Admin/Index.vue";
+import StudentDashboard from "../views/dashboard/Profile.vue";
+import StudentsAdmin from "../views/dashboard/Admin/Student.vue";
+import GalleryAdmin from "../views/dashboard/Admin/Gallery.vue";
+import SchedulesAdmin from "../views/dashboard/Admin/Schedules.vue";
+import OrganizationAdmin from "../views/dashboard/Admin/Organization.vue";
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
 
 const routes = [
     {
@@ -33,30 +47,51 @@ const routes = [
         meta: { titleKey: 'nav.admin', requiresAuth: false }
     },
 
+<<<<<<< HEAD
     {
         path: '/dashboard/admin',
         component: IndexAdmin,
+=======
+    // --- DASHBOARD ADMIN (NESTED ROUTES) ---
+    {
+        path: '/dashboard/admin',
+        component: Index,
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
         meta: { requiresAuth: true, role: 'admin' },
         children: [
             {
                 path: '',
+<<<<<<< HEAD
                 name: 'AdminOverview',
+=======
+                name: 'Admin',
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
                 meta: { titleKey: 'nav.dashboard', isOverview: true }
             },
             {
                 path: 'students',
+<<<<<<< HEAD
                 name: 'AdminStudents',
+=======
+                name: 'StudentsAdmin',
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
                 component: StudentsAdmin,
                 meta: { titleKey: 'nav.students', isOverview: false }
             },
             {
                 path: 'gallery',
+<<<<<<< HEAD
                 name: 'AdminGallery',
                 component: SharedGallery,
+=======
+                name: 'GalleryAdmin',
+                component: GalleryAdmin,
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
                 meta: { titleKey: 'nav.gallery', isOverview: false }
             },
             {
                 path: 'schedules',
+<<<<<<< HEAD
                 name: 'AdminSchedules',
                 component: SharedSchedules,
                 meta: { titleKey: 'nav.schedules', isOverview: false }
@@ -94,6 +129,28 @@ const routes = [
         ]
     },
 
+=======
+                name: 'SchedulesAdmin',
+                component: SchedulesAdmin,
+                meta: { titleKey: 'nav.schedules', isOverview: false }
+            },
+            {
+                path: 'resources',
+                name: 'ResourcesAdmin',
+                component: () => import('../views/dashboard/Admin/UnderDevelopment.vue'),
+                meta: { titleKey: 'nav.resources', isOverview: false }
+            },
+            {
+                path: 'organization', // Disinkronkan (Tunggal)
+                name: 'OrganizationAdmin',
+                component: OrganizationAdmin,
+                meta: { titleKey: 'nav.organization', isOverview: false }
+            },
+        ]
+    },
+
+    // --- DASHBOARD STUDENT ---
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
     {
         path: '/dashboard/student',
         component: IndexStudent,
@@ -149,10 +206,18 @@ const routes = [
         ]
     },
 
+<<<<<<< HEAD
     { path: '/gallery/:slug', name: 'GalleryDetail', component: GalleriDetail, meta: { titleKey: 'nav.gallery' } },
     { path: '/students', name: 'StudentPublic', component: Student, meta: { titleKey: 'nav.students' } },
     { path: '/students/:slug', name: 'StudentDetail', component: StudentDetail, meta: { titleKey: 'nav.students' } },
     { path: '/events', name: 'EventsPublic', component: Events, meta: { titleKey: 'nav.event' } },
+=======
+    // --- PUBLIC PAGES ---
+    { path: '/gallery/:slug', name: 'GalleryDetail', component: GalleriDetail, meta: { titleKey: 'nav.gallery' } },
+    { path: '/students', name: 'Student', component: Student, meta: { titleKey: 'nav.students' } },
+    { path: '/students/:slug', name: 'StudentDetail', component: StudentDetail, meta: { titleKey: 'nav.students' } },
+    { path: '/events', name: 'Events', component: Events, meta: { titleKey: 'nav.event' } },
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
 
     {
         path: '/:pathMatch(.*)*',

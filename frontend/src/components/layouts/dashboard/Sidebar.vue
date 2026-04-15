@@ -89,7 +89,11 @@ const handleLogout = () => {
            :class="props.isCollapsed && !isHovered ? 'flex flex-col items-center' : ''">
 
         <router-link
+<<<<<<< HEAD
             to="/dashboard/admin/profile"
+=======
+            to="/dashboard/profile"
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
             class="flex items-center transition-all duration-300 group relative rounded-2xl border border-transparent"
             :class="[
               isActive('/dashboard/profile')

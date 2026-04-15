@@ -6,10 +6,14 @@ import {
     Image as ImageIcon,
     BookOpen,
     GraduationCap,
+<<<<<<< HEAD
     ClipboardList,
     UserCircle,
     BookImage,
     FolderOpen
+=======
+    ClipboardList
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
 } from 'lucide-vue-next';
 
 export const menuAside = {
@@ -36,7 +40,17 @@ export const menuAside = {
             id: 'schedules',
             name: 'Schedules',
             icon: Calendar,
+<<<<<<< HEAD
             path: '/dashboard/admin/schedules'
+=======
+            path: '/dashboard/admin/schedules' // Sudah sinkron dengan router
+        },
+        {
+            id: 'resources',
+            name: 'Library',
+            icon: BookOpen,
+            path: '/dashboard/admin/resources'
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
         },
         {
             id: 'org',
@@ -44,6 +58,7 @@ export const menuAside = {
             icon: UserCog,
             path: '/dashboard/admin/organization'
         },
+<<<<<<< HEAD
         {
             id: 'library',
             name: 'E-Library',
@@ -56,6 +71,8 @@ export const menuAside = {
             icon: FolderOpen,
             path: '/dashboard/admin/vault'
         },
+=======
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
     ],
     mahasiswa: [
         {
@@ -71,6 +88,7 @@ export const menuAside = {
             path: '/dashboard/student/schedule'
         },
         {
+<<<<<<< HEAD
             id: 'st-library',
             name: 'Library',
             icon: BookOpen,
@@ -93,12 +111,28 @@ export const menuAside = {
             name: 'Academic Record',
             icon: GraduationCap,
             path: '/dashboard/student/grades'
+=======
+            id: 'st-grades',
+            name: 'Academic Record',
+            icon: GraduationCap,
+            path: '/dashboard/student' // Sementara diarahkan ke home karena rute belum ada
+        },
+        {
+            id: 'st-resources',
+            name: 'Resources',
+            icon: BookOpen,
+            path: '/dashboard/student' // Sementara diarahkan ke home karena rute belum ada
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
         },
         {
             id: 'st-tasks',
             name: 'Assignments',
             icon: ClipboardList,
+<<<<<<< HEAD
             path: '/dashboard/student/assignments'
+=======
+            path: '/dashboard/student' // Sementara diarahkan ke home karena rute belum ada
+>>>>>>> 5b3066eb8c5e15d2768ef54d82b9c56e9676498c
         },
     ]
 };
