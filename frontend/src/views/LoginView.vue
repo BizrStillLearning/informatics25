@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useThemeStore } from '../stores/themeStore'
@@ -168,22 +168,24 @@ const handleLogin = async () => {
     const result = await authStore.login(form.value.identifier, form.value.password);
 
     if (result.success) {
-      if (result.role === 'admin') {
-        router.push('/dashboard/admin');
-      } else {
-        router.push('/dashboard/student');
-      }
+      await nextTick();
+
+      const targetPath = authStore.role === 'admin'
+          ? '/dashboard/admin'
+          : '/dashboard/student';
+
+      router.push(targetPath);
     } else {
-      error.value = result.message;
+      error.value = result.message || "Username atau password salah.";
     }
   } catch (err) {
-    error.value = "Terjadi kesalahan sistem.";
+    console.error("Login Error:", err);
+    error.value = "Gagal terhubung ke server. Pastikan API berjalan.";
   } finally {
     isLoading.value = false;
   }
 };
 
-// const goToLanding = () => router.push('/')
 </script>
 
 <template>
@@ -196,14 +198,6 @@ const handleLogin = async () => {
       <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] md:w-[80%] md:h-[80%] rounded-full bg-secondary-600/10 dark:bg-dark-600/10 blur-[150px]"></div>
       </div>
-
-<!--      <button-->
-<!--          @click="goToLanding"-->
-<!--          class="absolute top-4 left-4 md:top-8 md:left-8 z-20 flex items-center gap-2 md:gap-3 px-4 py-2 md:px-6 md:py-3 bg-white/50 dark:bg-primary-900/40 backdrop-blur-xl text-primary-900 dark:text-primary-100 rounded-xl md:rounded-2xl shadow-sm border border-white/50 dark:border-primary-800 transition-all active:scale-95 text-[10px] font-black uppercase tracking-widest"-->
-<!--      >-->
-<!--        <Home class="w-3.5 h-3.5 md:w-4 md:h-4 text-secondary-600 dark:text-dark-600" />-->
-<!--        <span>{{ t('login.back') }}</span>-->
-<!--      </button>-->
 
       <div
           class="w-full max-w-[420px] p-6 sm:p-10 bg-white/60 dark:bg-primary-900/20 backdrop-blur-3xl rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl z-10 border border-white dark:border-primary-800"

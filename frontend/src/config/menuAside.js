@@ -1,23 +1,104 @@
 import {
-    LayoutDashboard, Users, UserCog, Calendar,
-    Image as ImageIcon, BookOpen, GraduationCap,
-    FileText, ClipboardList
+    LayoutDashboard,
+    Users,
+    UserCog,
+    Calendar,
+    Image as ImageIcon,
+    BookOpen,
+    GraduationCap,
+    ClipboardList,
+    UserCircle,
+    BookImage,
+    FolderOpen
 } from 'lucide-vue-next';
 
 export const menuAside = {
     admin: [
-        { name: 'Overview', icon: LayoutDashboard, path: '/dashboard/admin', id: 'overview' },
-        { name: 'Students', icon: Users, path: '/dashboard/admin/students', id: 'students' },
-        { name: 'Organization', icon: UserCog, path: '/dashboard/admin/organization', id: 'org' },
-        { name: 'Schedules', icon: Calendar, path: '/dashboard/admin/schedules', id: 'schedules' },
-        { name: 'Gallery', icon: ImageIcon, path: '/dashboard/admin/events', id: 'events' },
-        { name: 'Library', icon: BookOpen, path: '/dashboard/admin/resources', id: 'resources' },
+        {
+            id: 'overview',
+            name: 'Overview',
+            icon: LayoutDashboard,
+            path: '/dashboard/admin'
+        },
+        {
+            id: 'students',
+            name: 'Students',
+            icon: Users,
+            path: '/dashboard/admin/students'
+        },
+        {
+            id: 'gallery',
+            name: 'Gallery',
+            icon: ImageIcon,
+            path: '/dashboard/admin/gallery'
+        },
+        {
+            id: 'schedules',
+            name: 'Schedules',
+            icon: Calendar,
+            path: '/dashboard/admin/schedules'
+        },
+        {
+            id: 'org',
+            name: 'Organization',
+            icon: UserCog,
+            path: '/dashboard/admin/organization'
+        },
+        {
+            id: 'library',
+            name: 'E-Library',
+            icon: BookOpen,
+            path: '/dashboard/admin/library'
+        },
+        {
+            id: 'vault',
+            name: 'Vault Moderator',
+            icon: FolderOpen,
+            path: '/dashboard/admin/vault'
+        },
     ],
     mahasiswa: [
-        { name: 'My Dashboard', icon: LayoutDashboard, path: '/dashboard/student', id: 'st-dash' },
-        { name: 'Class Schedule', icon: Calendar, path: '/dashboard/student/schedule', id: 'st-schedule' },
-        { name: 'Academic Record', icon: GraduationCap, path: '/dashboard/student/grades', id: 'st-grades' },
-        { name: 'Resources', icon: BookOpen, path: '/dashboard/student/resources', id: 'st-resources' },
-        { name: 'Assignments', icon: ClipboardList, path: '/dashboard/student/tasks', id: 'st-tasks' },
+        {
+            id: 'st-dash',
+            name: 'My Dashboard',
+            icon: LayoutDashboard,
+            path: '/dashboard/student'
+        },
+        {
+            id: 'st-schedule',
+            name: 'Class Schedule',
+            icon: Calendar,
+            path: '/dashboard/student/schedule'
+        },
+        {
+            id: 'st-library',
+            name: 'Library',
+            icon: BookOpen,
+            path: '/dashboard/student/library'
+        },
+        {
+            id: 'st-vault',
+            name: 'Archive Hub',
+            icon: FolderOpen,
+            path: '/dashboard/student/vault'
+        },
+        {
+            id: 'st-gallery',
+            name: 'Gallery',
+            icon: BookImage,
+            path: '/dashboard/student/gallery'
+        },
+        {
+            id: 'st-grades',
+            name: 'Academic Record',
+            icon: GraduationCap,
+            path: '/dashboard/student/grades'
+        },
+        {
+            id: 'st-tasks',
+            name: 'Assignments',
+            icon: ClipboardList,
+            path: '/dashboard/student/assignments'
+        },
     ]
 };
