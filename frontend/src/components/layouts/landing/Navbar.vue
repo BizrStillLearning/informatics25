@@ -20,6 +20,7 @@ const isLangOpen = ref(false);
 const navLinks = [
   { name: 'home', path: '/' },
   { name: 'students', path: '/students' },
+  { name: 'library', path: '/library' }, // Menu Library Baru
   { name: 'event', path: '/events' },
 ];
 
@@ -68,18 +69,18 @@ onMounted(() => {
         </div>
 
         <div class="hidden md:flex items-center">
-          <div class="flex items-center space-x-2 mr-6">
+          <div class="flex items-center space-x-1 mr-6">
             <RouterLink
                 v-for="link in navLinks"
                 :key="link.path"
                 :to="link.path"
-                class="relative px-4 py-2 text-sm font-bold tracking-tight transition-all duration-300 uppercase"
+                class="relative px-4 py-2 text-[11px] font-black tracking-widest transition-all duration-300 uppercase"
                 :class="isActive(link.path)
                   ? 'text-secondary-600 dark:text-dark-600'
                   : 'text-primary-500 dark:text-primary-400 hover:text-secondary-600 dark:hover:text-dark-600'"
             >
               {{ t(`nav.${link.name}`) }}
-              <span v-if="isActive(link.path)" class="absolute bottom-0 left-0 w-full h-0.5 bg-secondary-600 dark:bg-dark-600 rounded-full"></span>
+              <span v-if="isActive(link.path)" class="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary-600 dark:bg-dark-600 rounded-full"></span>
             </RouterLink>
           </div>
 
@@ -88,7 +89,7 @@ onMounted(() => {
           <div class="relative lang-picker mr-2">
             <button
                 @click="isLangOpen = !isLangOpen"
-                class="flex items-center gap-2 px-3 py-2 rounded-xl bg-primary-50/50 dark:bg-primary-900 border border-primary-100 dark:border-primary-700 hover:border-secondary-600/50 dark:hover:border-dark-600/50 transition-all active:scale-95 group"
+                class="flex items-center gap-2 px-3 py-2 rounded-xl bg-primary-50/50 dark:bg-primary-900 border border-primary-100 dark:border-primary-700 transition-all active:scale-95 group"
             >
               <Languages class="w-4 h-4 text-secondary-600 dark:text-dark-600" />
               <span class="text-[10px] font-black uppercase tracking-widest text-primary-700 dark:text-primary-300">{{ currentLang.code }}</span>
@@ -97,7 +98,7 @@ onMounted(() => {
 
             <transition v-motion :initial="{ opacity: 0, y: 10, scale: 0.95 }" :enter="{ opacity: 1, y: 0, scale: 1 }">
               <div v-if="isLangOpen"
-                   class="lang-dropdown absolute right-0 mt-3 w-48 overflow-hidden rounded-2xl border border-primary-100 bg-white/80 p-2 shadow-2xl backdrop-blur-3xl transition-all duration-300 dark:border-primary-800 dark:bg-primary-950/90 z-50"
+                   class="lang-dropdown absolute right-0 mt-3 w-48 overflow-hidden rounded-2xl border border-primary-100 bg-white/80 p-2 shadow-2xl backdrop-blur-3xl dark:border-primary-800 dark:bg-primary-950/90 z-50"
               >
                 <div class="space-y-1">
                   <button
@@ -123,15 +124,15 @@ onMounted(() => {
 
           <button
               @click="themeStore.toggleTheme()"
-              class="mr-4 p-2.5 rounded-xl bg-primary-50 dark:bg-primary-800 text-primary-600 dark:text-dark-400 hover:ring-2 hover:ring-secondary-600/20 dark:hover:ring-dark-600/20 transition-all active:scale-90"
+              class="mr-4 p-2.5 rounded-xl bg-primary-50 dark:bg-primary-800 text-primary-600 dark:text-dark-400 transition-all active:scale-90"
           >
-            <Sun v-if="themeStore.isDark" class="w-5 h-5" />
-            <Moon v-else class="w-5 h-5" />
+            <Sun v-if="themeStore.isDark" class="w-5 h-5 text-amber-500" />
+            <Moon v-else class="w-5 h-5 text-secondary-600" />
           </button>
 
           <RouterLink
               to="/login"
-              class="flex items-center gap-2 bg-primary-900 dark:bg-dark-600 text-white px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary-800 dark:hover:bg-dark-700 transition-all shadow-xl shadow-secondary-600/10 dark:shadow-dark-600/20 active:scale-95"
+              class="flex items-center gap-2 bg-primary-900 dark:bg-dark-600 text-white px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary-800 dark:hover:bg-dark-700 transition-all shadow-xl active:scale-95"
           >
             <LayoutDashboard class="w-4 h-4" />
             {{ t('nav.admin') }}
@@ -173,9 +174,9 @@ onMounted(() => {
                   v-for="lang in languages"
                   :key="lang.code"
                   @click="selectLang(lang)"
-                  class="py-3 rounded-xl text-[10px] font-black transition-all border"
+                  class="py-3 rounded-xl text-[10px] font-black transition-all border uppercase"
                   :class="currentLang.code === lang.code
-                  ? 'bg-secondary-600 border-secondary-600 text-white shadow-lg shadow-secondary-600/20'
+                  ? 'bg-secondary-600 border-secondary-600 text-white shadow-lg'
                   : 'bg-primary-50 dark:bg-primary-900 border-primary-100 dark:border-primary-800 text-primary-700 dark:text-primary-300'"
               >
                 {{ lang.code }}

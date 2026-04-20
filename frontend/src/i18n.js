@@ -2,7 +2,7 @@ import { createI18n } from 'vue-i18n';
 
 const messages = {
     ID: {
-        nav: { home: 'Beranda', students: 'Mahasiswa', event: 'Agenda', admin: 'Admin', structure: 'Struktur', about: 'Tentang Kami', gallery: 'Galeri Kami' },
+        nav: { home: 'Beranda', students: 'Mahasiswa', library: "Perpustakaan", event: 'Agenda', admin: 'Admin', structure: 'Struktur', about: 'Tentang Kami', gallery: 'Galeri Kami' },
         hero: {
             buttons: { students: "Lihat Mahasiswa", gallery: "Lihat Galeri" },
             slides: [{ title: "Informatika 25" }, { title: "Masa Depan" }, { title: "Kreativitas" }, { title: "Solidaritas" }]
@@ -127,7 +127,7 @@ const messages = {
         },
     },
     EN: {
-        nav: { home: 'Home', students: 'Students', event: 'Events', admin: 'Admin', structure: 'Structure', about: 'About Us', gallery: 'Our Gallery' },
+        nav: { home: 'Home', students: 'Students', library: "Library", event: 'Events', admin: 'Admin', structure: 'Structure', about: 'About Us', gallery: 'Our Gallery' },
         hero: {
             buttons: { students: "View Students", gallery: "View Gallery" },
             slides: [{ title: "Informatics 25" }, { title: "The Future" }, { title: "Creativity" }, { title: "Solidarity" }]
@@ -252,7 +252,7 @@ const messages = {
         },
     },
     AR: {
-        nav: { home: 'الرئيسية', students: 'الطلاب', event: 'الأجندة', admin: 'مسؤول', structure: 'الهيكل', about: 'نبذة عنا', gallery: 'معرضنا' },
+        nav: { home: 'الرئيسية', students: 'الطلاب', library: "مكتبة", event: 'الأجندة', admin: 'مسؤول', structure: 'الهيكل', about: 'نبذة عنا', gallery: 'معرضنا' },
         hero: {
             buttons: { students: "قائمة الطلاب", gallery: "معرض الصور" },
             slides: [{ title: "المعلوماتية 25" }, { title: "المستقبل" }, { title: "الإبداع" }, { title: "التضامن" }]
@@ -375,7 +375,7 @@ const messages = {
         }
     },
     JP: {
-        nav: { home: 'ホーム', students: '学生', event: '予定', admin: '管理者', structure: '組織', about: '私たちについて', gallery: 'ギャラリー' },
+        nav: { home: 'ホーム', students: '学生', library: '図書館', event: '予定', admin: '管理者', structure: '組織', about: '私たちについて', gallery: 'ギャラリー' },
         hero: {
             buttons: { students: "学生リスト", gallery: "ギャラリー" },
             slides: [{ title: "情報学 25" }, { title: "未来" }, { title: "創造性" }, { title: "連帯" }]
@@ -498,7 +498,7 @@ const messages = {
         }
     },
     CN: {
-        nav: { home: '首页', students: '学生', event: '议程', admin: '管理', structure: '结构', about: '关于我们', gallery: '我们的画廊' },
+        nav: { home: '首页', students: '学生', library: '图书馆', event: '议程', admin: '管理', structure: '结构', about: '关于我们', gallery: '我们的画廊' },
         hero: {
             buttons: { students: "学生名单", gallery: "查看画廊" },
             slides: [{ title: "信息学 25" }, { title: "未来" }, { title: "创造力" }, { title: "团结" }]
@@ -621,7 +621,7 @@ const messages = {
         }
     },
     KR: {
-        nav: { home: '홈', students: '학생', event: '일정', admin: '관리', structure: '조직', about: '회사 소개', gallery: '갤러리' },
+        nav: { home: '홈', students: '학생', library: '도서관', event: '일정', admin: '관리', structure: '조직', about: '회사 소개', gallery: '갤러리' },
         hero: {
             buttons: { students: "학생 명단", gallery: "갤러리 보기" },
             slides: [{ title: "정보공학 25" }, { title: "미래" }, { title: "창의성" }, { title: "연대" }]

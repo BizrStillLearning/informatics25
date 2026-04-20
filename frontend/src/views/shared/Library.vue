@@ -112,13 +112,13 @@ onMounted(fetchBooks);
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 class="text-xl font-black text-primary-900 dark:text-white uppercase tracking-tighter">
-            Digital <span class="text-secondary-600 dark:text-emerald-500">Library</span>
+            Digital <span class="text-secondary-600 dark:text-dark-500">Library</span>
           </h2>
           <p class="text-[8px] font-bold text-primary-400 dark:text-primary-500 uppercase tracking-[0.4em]">
             Official Knowledge Repository v1.0
           </p>
         </div>
-        <button v-if="isAdmin" @click="openModal()" class="flex items-center justify-center gap-2 px-6 py-3 bg-secondary-600 text-white rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-secondary-600/20 active:scale-95 transition-all">
+        <button v-if="isAdmin" @click="openModal()" class="flex items-center justify-center gap-2 px-6 py-3 bg-secondary-600 dark:bg-dark-600 text-white rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-secondary-600/20 active:scale-95 transition-all">
           <PlusCircle class="w-4 h-4" /> Tambah Koleksi
         </button>
       </div>
@@ -129,14 +129,14 @@ onMounted(fetchBooks);
             <p class="text-[10px] font-black text-primary-400 uppercase tracking-widest">Total Koleksi</p>
             <p class="text-2xl font-black text-primary-900 dark:text-white">{{ stats.total }}</p>
           </div>
-          <Book class="w-10 h-10 text-indigo-500 bg-indigo-500/10 p-2 rounded-xl" />
+          <Book class="w-10 h-10 text-indigo-500 bg-indigo-500/10 dark:text-dark-500 dark:bg-dark-500/10 p-2 rounded-xl" />
         </div>
         <div class="bg-white/40 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 p-5 rounded-2xl flex justify-between items-center shadow-soft">
           <div>
             <p class="text-[10px] font-black text-primary-400 uppercase tracking-widest">Kategori Aktif</p>
             <p class="text-2xl font-black text-primary-900 dark:text-white">{{ stats.categories }}</p>
           </div>
-          <Tags class="w-10 h-10 text-emerald-500 bg-emerald-500/10 p-2 rounded-xl" />
+          <Tags class="w-10 h-10 text-secondary-500 dark:text-dark-500 bg-secondary-500/10 dark:bg-dark-500/10 p-2 rounded-xl" />
         </div>
       </div>
 
@@ -144,7 +144,7 @@ onMounted(fetchBooks);
         <div class="flex flex-wrap gap-2">
           <button v-for="cat in ['all', 'Teknik Informatika', 'Sistem Informasi', 'Manajemen', 'Umum']" :key="cat"
                   @click="categoryFilter = cat"
-                  :class="categoryFilter === cat ? 'bg-secondary-600 text-white shadow-lg' : 'text-primary-500 hover:bg-white/50 dark:hover:bg-white/10'"
+                  :class="categoryFilter === cat ? 'bg-secondary-600 text-white shadow-lg dark:bg-dark-600' : 'text-primary-500 hover:bg-white/50 dark:hover:bg-white/10'"
                   class="px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">
             {{ cat }}
           </button>
@@ -188,10 +188,10 @@ onMounted(fetchBooks);
       </div>
 
       <div class="bg-indigo-500/5 border border-indigo-500/10 p-5 rounded-[2rem] flex items-start gap-4">
-        <Info class="w-5 h-5 text-indigo-500 mt-1" />
+        <Info class="w-5 h-5 text-secondary-500 dark:text-dark-500 mt-1" />
         <div class="space-y-1">
-          <h4 class="text-[10px] font-black text-indigo-500 uppercase tracking-widest">Repository Protocol</h4>
-          <p class="text-[10px] text-indigo-400/80 font-medium leading-relaxed uppercase tracking-wider">
+          <h4 class="text-[10px] font-black text-secondary-500 dark:text-dark-500 uppercase tracking-widest">Repository Protocol</h4>
+          <p class="text-[10px] text-secondary-400/80 dark:text-dark-400/80 font-medium leading-relaxed uppercase tracking-wider">
             Semua modul dalam perpustakaan ini adalah aset resmi angkatan. Dilarang menyebarluaskan file tanpa izin administratif.
           </p>
         </div>

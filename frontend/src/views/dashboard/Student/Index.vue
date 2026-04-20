@@ -25,7 +25,7 @@ const studentStats = ref([
     <div v-if="route.path === '/dashboard/student'" class="p-8 space-y-6">
       <div class="space-y-0.5">
         <h2 class="text-xl font-black text-primary-900 dark:text-white uppercase tracking-tighter">
-          Dashboard <span class="text-secondary-600">{{ authStore.profile?.full_name || 'Student' }}</span>
+          Dashboard <span class="text-secondary-600 dark:text-dark-600">{{ authStore.profile?.full_name || 'Student' }}</span>
         </h2>
         <p class="text-[8px] font-bold text-primary-400 dark:text-primary-500 uppercase tracking-[0.4em]">
           Academic Monitoring Protocol v1.0

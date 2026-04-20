@@ -14,7 +14,12 @@
     <include_path>
       <path value="$PROJECT_DIR$/backend/vendor/firebase/php-jwt" />
       <path value="$PROJECT_DIR$/backend/vendor/composer" />
+      <path value="$PROJECT_DIR$/legacy-backend/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/legacy-backend/vendor/composer" />
     </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.0">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />

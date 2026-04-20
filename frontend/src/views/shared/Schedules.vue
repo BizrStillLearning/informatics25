@@ -5,7 +5,6 @@ import {
   Trash2, Clock, BookOpen, Users,
   MapPin, Filter, X
 } from 'lucide-vue-next';
-import Layout from "../../components/layouts/dashboard/Layout.vue";
 import api from '../../api/axios.js';
 import Swal from 'sweetalert2';
 import { useAuthStore } from "../../stores/authStore.js";
@@ -78,7 +77,6 @@ const stats = computed(() => {
   };
 });
 
-// Logic CRUD (Diproteksi isAdmin)
 const openModal = (data = null) => {
   if (!isAdmin.value) return;
   if (data) {
@@ -95,7 +93,6 @@ const handleSubmit = async () => {
   if (form.value.startTime >= form.value.endTime) {
     return Swal.fire('Gagal', 'Jam selesai harus setelah jam mulai!', 'error');
   }
-  // Simulasi Save
   Swal.fire('Berhasil', isEdit.value ? 'Jadwal diperbarui' : 'Jadwal ditambahkan', 'success');
   isModalOpen.value = false;
   fetchSchedules();
@@ -126,7 +123,7 @@ onMounted(fetchSchedules);
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 class="text-xl font-black text-primary-900 dark:text-white uppercase tracking-tighter">
-            Jadwal <span class="text-secondary-600 dark:text-emerald-500">Perkuliahan</span>
+            Jadwal <span class="text-secondary-600 dark:text-dark-500">Perkuliahan</span>
           </h2>
           <p class="text-[8px] font-bold text-primary-400 dark:text-primary-500 uppercase tracking-[0.4em]">
             {{ isAdmin ? 'Management Protocol v1.0' : 'Academic Viewer Protocol v1.0' }}
@@ -136,7 +133,7 @@ onMounted(fetchSchedules);
         <button
             v-if="isAdmin"
             @click="openModal()"
-            class="flex items-center justify-center gap-2 px-6 py-3 bg-secondary-600 hover:bg-secondary-700 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-secondary-600/20 active:scale-95"
+            class="flex items-center justify-center gap-2 px-6 py-3 bg-secondary-600 hover:bg-secondary-700 dark:bg-dark-600 dark:hover:bg-dark-700text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-secondary-600/20 active:scale-95"
         >
           <PlusCircle class="w-4 h-4" />
           Tambah Jadwal
@@ -195,7 +192,7 @@ onMounted(fetchSchedules);
             <tr v-else v-for="s in filteredSchedules" :key="s.id" class="hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
               <td class="p-5">
                 <p class="text-xs font-black text-primary-900 dark:text-white uppercase">{{ s.courseName }}</p>
-                <span class="text-[9px] font-bold text-secondary-600 bg-secondary-600/10 px-2 py-0.5 rounded">SEM {{ s.semester }}</span>
+                <span class="text-[9px] font-bold text-secondary-600 dark:text-dark-600 dark:bg-dark-600/10 bg-secondary-600/10 px-2 py-0.5 rounded">SEM {{ s.semester }}</span>
               </td>
               <td class="p-5">
                 <p class="text-[10px] font-bold text-primary-600 dark:text-primary-300 uppercase">{{ s.lecturer }}</p>
@@ -210,7 +207,7 @@ onMounted(fetchSchedules);
               </td>
               <td v-if="isAdmin" class="p-5">
                 <div class="flex justify-center gap-2">
-                  <button @click="openModal(s)" class="p-2 hover:bg-indigo-500/20 text-indigo-500 rounded-lg transition-all"><Edit2 class="w-4 h-4" /></button>
+                  <button @click="openModal(s)" class="p-2 hover:bg-secondary-500/20 text-secondary-500 dark:bg-dark-500/20 dark:text-dark-500 rounded-lg transition-all"><Edit2 class="w-4 h-4" /></button>
                   <button @click="confirmDelete(s.id)" class="p-2 hover:bg-red-500/20 text-red-500 rounded-lg transition-all"><Trash2 class="w-4 h-4" /></button>
                 </div>
               </td>
@@ -230,7 +227,7 @@ onMounted(fetchSchedules);
       <div class="relative bg-white/90 dark:bg-primary-900/90 backdrop-blur-xl w-full max-w-lg rounded-[2.5rem] shadow-2xl border border-white/20 overflow-hidden animate-in zoom-in-95 duration-300">
         <div class="p-8 space-y-6">
           <h3 class="text-xl font-black text-primary-900 dark:text-white uppercase tracking-tighter">
-            {{ isEdit ? 'Update' : 'Add' }} <span class="text-secondary-600">Schedule</span>
+            {{ isEdit ? 'Update' : 'Add' }} <span class="text-secondary-600 dark:text-dark-600">Schedule</span>
           </h3>
 
           <form @submit.prevent="handleSubmit" class="space-y-4">
@@ -277,7 +274,7 @@ onMounted(fetchSchedules);
 
             <div class="flex gap-3 pt-4">
               <button type="button" @click="isModalOpen = false" class="flex-1 px-6 py-4 border border-primary-100 dark:border-white/10 rounded-2xl font-black text-[10px] uppercase text-primary-400">Cancel</button>
-              <button type="submit" class="flex-1 px-6 py-4 bg-secondary-600 text-white rounded-2xl font-black text-[10px] uppercase shadow-lg shadow-secondary-600/20">Execute Protocol</button>
+              <button type="submit" class="flex-1 px-6 py-4 bg-secondary-600 dark:bg-dark-600 text-white rounded-2xl font-black text-[10px] uppercase shadow-lg shadow-secondary-600/20">Execute Protocol</button>
             </div>
           </form>
         </div>

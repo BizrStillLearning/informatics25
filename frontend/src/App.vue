@@ -13,33 +13,27 @@ const themeStore = useThemeStore();
 const { t, locale } = useI18n();
 
 router.beforeEach((to, from, next) => {
-  isLoading.value = true;
+  const hasSeenWelcome = sessionStorage.getItem('protocol_init');
+  if (to.path === '/' && !hasSeenWelcome) {
+    isLoading.value = false;
+  } else {
+    isLoading.value = true;
+  }
   next();
 });
 
 router.afterEach(() => {
   setTimeout(() => {
     isLoading.value = false;
-  }, 1000);
+  }, 400);
 });
 
 onMounted(async () => {
   themeStore.applyTheme();
-
   const savedToken = localStorage.getItem('token');
-
   if (savedToken && authStore.isAuthenticated) {
-    try {
-      const isValid = await authStore.checkSessionAPI();
-      if (!isValid) {
-        console.warn("Sesi tidak valid, mengalihkan ke login...");
-        router.push('/login');
-      }
-    } catch (err) {
-      console.error("Gagal verifikasi sesi:", err);
-    }
+    try { await authStore.checkSessionAPI(); } catch (err) { console.error(err); }
   }
-
   updateTitle();
 });
 
@@ -52,44 +46,29 @@ watch([locale, () => route.path], updateTitle);
 </script>
 
 <template>
-  <div class="antialiased bg-white dark:bg-primary-950 min-h-screen transition-colors duration-500 selection:bg-secondary-600 selection:text-white">
+  <div class="antialiased bg-white dark:bg-primary-950 min-h-screen selection:bg-secondary-600/30">
 
     <Transition
-        v-motion
-        :initial="{ opacity: 0 }"
-        :enter="{ opacity: 1 }"
-        :leave="{ opacity: 0, transition: { duration: 800 } }"
+        enter-active-class="transition duration-300 ease-out"
+        leave-active-class="transition duration-400 ease-in"
+        enter-from-class="opacity-0"
+        leave-to-class="opacity-0"
     >
       <div v-if="isLoading" class="fixed inset-0 z-[9999] bg-white dark:bg-primary-950 flex flex-col items-center justify-center">
-        <div class="relative flex items-center justify-center">
-          <div class="w-24 h-24 border-4 border-primary-100 dark:border-primary-800 rounded-3xl animate-[spin_3s_linear_infinite]"></div>
-          <div class="absolute w-24 h-24 border-t-4 border-secondary-600 dark:border-dark-600 rounded-3xl animate-spin"></div>
-          <div class="absolute flex items-center justify-center">
-            <span class="text-xl font-black text-primary-900 dark:text-white animate-pulse tracking-tighter">
-              IF<span class="text-secondary-600 dark:text-dark-600">25</span>
-            </span>
-          </div>
+        <div class="relative flex items-center justify-center scale-75"> <div class="w-20 h-20 border-2 border-primary-100 dark:border-primary-800 rounded-full animate-[spin_4s_linear_infinite]"></div>
+          <div class="absolute w-20 h-20 border-t-2 border-secondary-600 dark:border-dark-600 rounded-full animate-spin"></div>
+          <span class="absolute text-[10px] font-black text-primary-900 dark:text-white tracking-widest uppercase">IF25</span>
         </div>
-
-        <div class="mt-8 flex flex-col items-center gap-2">
-          <p class="text-[10px] font-black text-primary-900 dark:text-white uppercase tracking-[0.4em] animate-pulse">
-            Initializing <span class="text-secondary-600 dark:text-dark-600 italic">System</span>
-          </p>
-          <div class="w-32 h-1 bg-primary-100 dark:bg-primary-900 rounded-full overflow-hidden">
-            <div class="h-full bg-secondary-600 dark:bg-dark-600 animate-[loading-bar_1.5s_infinite]"></div>
-          </div>
-        </div>
-
-        <div class="absolute w-64 h-64 bg-secondary-600/10 dark:bg-dark-600/10 rounded-full blur-[100px] animate-pulse"></div>
       </div>
     </Transition>
 
     <router-view v-slot="{ Component }">
       <transition
-          v-motion
-          :initial="{ opacity: 0, y: 15, filter: 'blur(10px)' }"
-          :enter="{ opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 600, ease: 'easeOut' } }"
           mode="out-in"
+          enter-active-class="transition duration-300 ease-out"
+          leave-active-class="transition duration-200 ease-in"
+          enter-from-class="opacity-0"
+          leave-to-class="opacity-0"
       >
         <component :is="Component" />
       </transition>
@@ -97,3 +76,9 @@ watch([locale, () => route.path], updateTitle);
 
   </div>
 </template>
+
+<style>
+.transition-all {
+  transition-duration: 300ms !important;
+}
+</style>
