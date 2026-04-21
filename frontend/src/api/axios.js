@@ -4,8 +4,8 @@ import { useAuthStore } from '../stores/authStore';
 import Swal from 'sweetalert2';
 
 const api = axios.create({
-    baseURL: 'http://localhost/informatics25/backend/api',
-    withCredentials: true
+    // Cukup sampai /api saja
+    baseURL: 'http://localhost:8080/api',
 });
 
 api.interceptors.request.use(
@@ -16,9 +16,7 @@ api.interceptors.request.use(
         }
         return config;
     },
-    (error) => {
-        return Promise.reject(error);
-    }
+    (error) => Promise.reject(error)
 );
 
 

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import i18n from '../i18n'
+import { useAuthStore } from "../stores/authStore.js"; // Tetap biarkan import-nya
 
 // PUBLIC VIEWS
 import Home from '../views/Home.vue'
@@ -25,6 +26,8 @@ import SharedVault from "../views/shared/Vault.vue"
 
 // STUDENT DASHBOARD
 import IndexStudent from "../views/dashboard/Student/Index.vue"
+
+// [DIHAPUS] const authStore = useAuthStore() <--- INI BIANG KEROKNYA, HAPUS BARIS INI
 
 const routes = [
     {
@@ -205,19 +208,27 @@ const router = createRouter({
 })
 
 // ================= GUARD =================
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+    // Di sini pemanggilan store sudah benar karena berada di dalam hook navigasi
+    const authStore = useAuthStore();
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role')?.toLowerCase();
 
     if (to.matched.some(record => record.meta.requiresAuth)) {
         if (!token) return next({ name: 'Login' });
 
+        if (!authStore.user) {
+            const isValid = await authStore.checkSessionAPI();
+            if (!isValid) return next({ name: 'Login' });
+        }
+
         const requiredRole = to.matched.find(r => r.meta.role)?.meta.role;
-        if (requiredRole && requiredRole !== role) {
-            return next(role === 'admin' ? '/dashboard/admin' : '/dashboard/student');
+        if (requiredRole && requiredRole !== authStore.role) {
+            return next(authStore.role === 'admin' ? '/dashboard/admin' : '/dashboard/student');
         }
         next();
-    } else if (to.name === 'Login' && token) {
+    }
+    else if (to.name === 'Login' && token) {
         next(role === 'admin' ? '/dashboard/admin' : '/dashboard/student');
     } else {
         next();

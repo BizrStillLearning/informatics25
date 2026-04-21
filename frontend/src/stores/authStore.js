@@ -31,72 +31,67 @@ export const useAuthStore = defineStore('auth', {
     actions: {
         async login(username, password) {
             try {
-                const response = await api.post('/login', { username, password });
+                // Sesuai route Go: r.POST("/api/auth/login", ...)
+                const response = await api.post('/auth/login', { username, password });
 
                 if (response.data.status) {
                     const userData = response.data.user;
-                    const profileData = response.data.profile;
+                    const profileData = response.data.profile || null;
                     const userToken = response.data.token;
 
-                    const userRole = (userData?.role || response.data.role || '').toLowerCase();
+                    // Go mengirim role dalam userData
+                    const userRole = (userData?.role || '').toLowerCase();
                     const userLoginName = userData?.username || username;
 
+                    // Update State
                     this.token = userToken;
                     this.role = userRole;
                     this.username = userLoginName;
                     this.user = userData;
                     this.profile = profileData;
 
+                    // Update LocalStorage
                     localStorage.setItem('token', userToken);
                     localStorage.setItem('role', userRole);
                     localStorage.setItem('username', userLoginName);
                     localStorage.setItem('user', JSON.stringify(userData));
                     localStorage.setItem('profile', JSON.stringify(profileData));
 
-                    if (response.data.expires_in) {
-                        this.setAutoLogout(response.data.expires_in * 1000);
-                    }
+                    // Set Auto Logout (default 24 jam jika tidak ada expires_in)
+                    const duration = response.data.expires_in || 86400;
+                    this.setAutoLogout(duration * 1000);
 
                     return { success: true, role: this.role };
                 }
-                return { success: false, message: response.data.message };
+                return { success: false, message: response.data.message || 'Login gagal' };
             } catch (err) {
                 console.error("Login Error:", err);
                 return {
                     success: false,
-                    message: err.response?.data?.message || 'Gagal terhubung ke server.'
+                    message: err.response?.data?.message || 'Gagal terhubung ke server backend.'
                 };
             }
         },
 
         async checkSessionAPI() {
             try {
-                const response = await api.get('/check-session');
+                const response = await api.get('/system/check-session');
 
                 if (response.data.status && response.data.user) {
                     const userData = response.data.user;
                     const userRole = (userData.role || '').toLowerCase();
 
-                    // Update State
                     this.user = userData;
                     this.username = userData.username;
                     this.role = userRole;
                     if (response.data.profile) this.profile = response.data.profile;
 
-                    // Update Storage
                     localStorage.setItem('user', JSON.stringify(userData));
                     localStorage.setItem('username', userData.username);
                     localStorage.setItem('role', userRole);
+
                     if (response.data.profile) {
                         localStorage.setItem('profile', JSON.stringify(response.data.profile));
-                    }
-
-                    // Handle Session Timer
-                    if (response.data.remaining_time && response.data.remaining_time > 0) {
-                        this.setAutoLogout(response.data.remaining_time * 1000);
-                    } else {
-                        this.logout();
-                        return false;
                     }
 
                     return true;
@@ -124,14 +119,14 @@ export const useAuthStore = defineStore('auth', {
 
         async handleSessionExpired() {
             if (this.token) {
+                this.logout();
                 await Swal.fire({
                     title: 'Sesi Berakhir',
                     text: 'Sesi Anda telah habis. Silakan login kembali.',
                     icon: 'info',
                     confirmButtonText: 'OK',
-                    allowOutsideClick: false
+                    confirmButtonColor: '#155dfc',
                 });
-                this.logout();
             }
         },
 
